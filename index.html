@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The World of Robotics - عالم الروبوتات</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .container {
+            width: 95%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* الهيدر */
+        header {
+            background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
+            color: white;
+            padding: 18px 0;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        
+        .logo-title-container {
+            display: flex;
+            align-items: center;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .logo-title-container:hover {
+            transform: translateY(-2px);
+        }
+        
+        .logo {
+            width: 70px;
+            height: 70px;
+            border-radius: 15px;
+            object-fit: cover;
+            border: 3px solid #00bcd4;
+            box-shadow: 0 0 25px rgba(0, 188, 212, 0.6);
+            transition: all 0.4s ease;
+        }
+        
+        .logo:hover {
+            transform: rotate(5deg) scale(1.05);
+            box-shadow: 0 0 35px rgba(0, 188, 212, 0.8);
+        }
+        
+        .site-title {
+            font-size: 1.8rem;
+            margin-right: 20px;
+            font-weight: 800;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+        
+        .site-title::after {
+            content: 'عالم الروبوتات';
+            display: block;
+            font-size: 0.9rem;
+            color: #00bcd4;
+            font-weight: 500;
+            margin-top: 5px;
+            letter-spacing: 1px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 10px 18px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        nav ul li a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* سلة التسوق */
+        .cart-section {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin: 40px auto;
+            max-width: 600px;
+            display: none;
+            animation: slideUp 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .cart-section h2 {
+            color: #1a237e;
+            margin-bottom: 25px;
+            text-align: center;
+            font-size: 1.8rem;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .cart-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(to right, #00bcd4, #1a237e);
+            border-radius: 2px;
+        }
+        
+        #cart-items {
+            margin-bottom: 20px;
+            max-height: 300px;
+            overflow-y: auto;
+            padding: 15px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: white;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s ease;
+        }
+        
+        .cart-item:hover {
+            transform: translateX(-5px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .cart-item-name {
+            font-weight: 600;
+            color: #333;
+            flex: 1;
+            font-size: 1rem;
+        }
+        
+        .cart-item-price {
+            color: #00bcd4;
+            font-weight: 700;
+            margin: 0 15px;
+            font-size: 1.1rem;
+        }
+        
+        .remove-item {
+            background: linear-gradient(135deg, #ff5252 0%, #ff1744 100%);
+            color: white;
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(255, 82, 82, 0.3);
+        }
+        
+        .remove-item:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(255, 82, 82, 0.4);
+        }
+        
+        .cart-total {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #1a237e;
+            text-align: center;
+            padding: 20px 0;
+            border-top: 2px solid rgba(0, 0, 0, 0.1);
+            margin-top: 15px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 12px;
+        }
+        
+        .cart-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 25px;
+            gap: 15px;
+        }
+        
+        .clear-cart, .checkout-btn {
+            padding: 14px 25px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+            min-width: 150px;
+            font-size: 1rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
+        }
+        
+        .clear-cart {
+            background: linear-gradient(135deg, #757575 0%, #616161 100%);
+            color: white;
+            box-shadow: 0 4px 12px rgba(117, 117, 117, 0.3);
+        }
+        
+        .clear-cart:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(117, 117, 117, 0.4);
+        }
+        
+        .checkout-btn {
+            background: linear-gradient(135deg, #00c853 0%, #00b248 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(0, 200, 83, 0.4);
+        }
+        
+        .checkout-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 200, 83, 0.5);
+        }
+        
+        /* المنتجات */
+        .products-section {
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .section-title {
+            font-size: 2.2rem;
+            margin-bottom: 50px;
+            color: #1a237e;
+            position: relative;
+            display: inline-block;
+            font-weight: 800;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, #00bcd4, #1a237e);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, #00bcd4, #1a237e);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+            transform-origin: left;
+        }
+        
+        .product-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .product-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-weight: 600;
+        }
+        
+        .product-card:hover .product-img {
+            transform: scale(1.08);
+        }
+        
+        .product-info {
+            padding: 25px;
+            background: white;
+        }
+        
+        .product-name {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            color: #1a237e;
+            font-weight: 800;
+            line-height: 1.3;
+        }
+        
+        .product-description {
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            height: 60px;
+            overflow: hidden;
+        }
+        
+        .product-price {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #00bcd4;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        
+        .add-to-cart {
+            background: linear-gradient(135deg, #00bcd4 0%, #0097a7 100%);
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            font-size: 1rem;
+            font-weight: 700;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(0, 188, 212, 0.3);
+        }
+        
+        .add-to-cart:hover {
+            background: linear-gradient(135deg, #0097a7 0%, #00838f 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 188, 212, 0.4);
+        }
+        
+        /* الفوتر */
+        footer {
+            background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
+            color: white;
+            padding: 50px 0 30px 0;
+            margin-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, #00bcd4, #1a237e);
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            color: #00bcd4;
+            padding-bottom: 12px;
+            border-bottom: 2px solid rgba(0, 188, 212, 0.3);
+            display: inline-block;
+            font-weight: 700;
+        }
+        
+        .contact-info p {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            font-size: 1rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .contact-info p:hover {
+            transform: translateX(5px);
+        }
+        
+        .contact-info i {
+            margin-right: 15px;
+            color: #00bcd4;
+            width: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        
+        /* الأيقونات الثابتة */
+        .cart-icon {
+            position: fixed;
+            top: 25px;
+            left: 25px;
+            background: linear-gradient(135deg, #00bcd4 0%, #0097a7 100%);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(0, 188, 212, 0.4);
+            z-index: 1001;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid white;
+        }
+        
+        .cart-icon:hover {
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: 0 10px 30px rgba(0, 188, 212, 0.6);
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: linear-gradient(135deg, #ff5252 0%, #ff1744 100%);
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: bold;
+            box-shadow: 0 3px 10px rgba(255, 82, 82, 0.4);
+        }
+        
+        .customer-service-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+            display: flex;
+            align-items: center;
+            z-index: 1001;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid white;
+        }
+        
+        .customer-service-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(37, 211, 102, 0.5);
+        }
+        
+        .customer-service-btn i {
+            margin-left: 10px;
+            font-size: 1.3rem;
+        }
+        
+        /* الإشعارات */
+        .notification {
+            position: fixed;
+            top: 100px;
+            right: 30px;
+            background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%);
+            color: white;
+            padding: 18px 28px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(33, 150, 243, 0.3);
+            z-index: 1002;
+            font-weight: 700;
+            font-size: 1rem;
+            animation: slideInRight 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            max-width: 350px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .notification.success {
+            background: linear-gradient(135deg, #4caf50 0%, #388e3c 100%);
+            box-shadow: 0 10px 30px rgba(76, 175, 80, 0.3);
+        }
+        
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        /* التجاوب */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+            
+            .logo-title-container {
+                justify-content: center;
+                margin-bottom: 10px;
+            }
+            
+            .site-title {
+                margin-right: 0;
+                font-size: 1.5rem;
+            }
+            
+            nav ul {
+                justify-content: center;
+                gap: 8px;
+            }
+            
+            nav ul li a {
+                padding: 8px 15px;
+                font-size: 0.95rem;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 20px;
+            }
+            
+            .cart-icon {
+                top: 20px;
+                left: 20px;
+                width: 55px;
+                height: 55px;
+            }
+            
+            .customer-service-btn {
+                bottom: 20px;
+                right: 20px;
+                padding: 12px 20px;
+                font-size: 0.95rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .cart-section {
+                padding: 25px;
+                margin: 30px auto;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                width: 98%;
+                padding: 0 10px;
+            }
+            
+            .site-title {
+                font-size: 1.3rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .product-img {
+                height: 200px;
+            }
+            
+            .cart-actions {
+                flex-direction: column;
+                gap: 12px;
+            }
+            
+            .clear-cart, .checkout-btn {
+                width: 100%;
+                min-width: auto;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .customer-service-btn {
+                width: 60px;
+                height: 60px;
+                border-radius: 50%;
+                padding: 0;
+                justify-content: center;
+            }
+            
+            .customer-service-btn span {
+                display: none;
+            }
+            
+            .customer-service-btn i {
+                margin-left: 0;
+                font-size: 1.4rem;
+            }
+            
+            .notification {
+                right: 15px;
+                left: 15px;
+                max-width: none;
+            }
+        }
+        
+        @media (min-width: 1400px) {
+            .container {
+                max-width: 1300px;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 35px;
+            }
+        }
+        
+        /* للأجهزة اللوحية */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .products-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        /* تأثيرات خاصة */
+        .glow {
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from {
+                box-shadow: 0 0 10px #00bcd4, 0 0 20px #00bcd4;
+            }
+            to {
+                box-shadow: 0 0 20px #00bcd4, 0 0 30px #00bcd4;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- أيقونة سلة التسوق -->
+    <div class="cart-icon glow" onclick="toggleCart()">
+        <i class="fas fa-shopping-cart"></i>
+        <div class="cart-count" id="cart-count">0</div>
+    </div>
+
+    <!-- زر خدمة العملاء -->
+    <button class="customer-service-btn" onclick="contactCustomerService()">
+        <i class="fab fa-whatsapp"></i>
+        <span>خدمة العملاء</span>
+    </button>
+
+    <!-- الهيدر -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-title-container">
+                    <img src="images/oo.jpg" class="logo" alt="The World of Robotics Logo" onerror="handleImageError(this, 'logo')">
+                    <h1 class="site-title">The World of Robotics</h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#home">الرئيسية</a></li>
+                        <li><a href="#products">المنتجات</a></li>
+                        <li><a href="#cart" onclick="toggleCart()">سلة التسوق</a></li>
+                        <li><a href="#contact">اتصل بنا</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- سلة التسوق -->
+    <section class="cart-section" id="cart-section">
+        <div class="container">
+            <h2>🛒 سلة التسوق</h2>
+            <div id="cart-items"></div>
+            <div class="cart-total">
+                💰 الإجمالي: $<span id="cart-total">0</span>
+            </div>
+            <div class="cart-actions">
+                <button class="clear-cart" onclick="clearCart()">
+                    <i class="fas fa-trash"></i> إفراغ السلة
+                </button>
+                <button class="checkout-btn" onclick="checkout()">
+                    <i class="fab fa-whatsapp"></i> إتمام الشراء
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم المنتجات -->
+    <section class="products-section" id="products">
+        <div class="container">
+            <h2 class="section-title">🤖 منتجات الروبوتات المتطورة</h2>
+            <div class="products-grid">
+                <!-- المنتج 1 -->
+                <div class="product-card">
+                    <img src="images/o.jpg" class="product-img" alt="روبوت صناعي" onerror="handleImageError(this, 'product')">
+                    <div class="product-info">
+                        <h3 class="product-name">🤖 روبوت صناعي متقدم</h3>
+                        <p class="product-description">روبوت صناعي ذو 6 محاور، مثالي لأتمتة خطوط الإنتاج الدقيقة.</p>
+                        <div class="product-price">$12,500</div>
+                        <button class="add-to-cart" onclick="addToCart('🤖 روبوت صناعي متقدم', 12500)">
+                            <i class="fas fa-cart-plus"></i> أضف إلى السلة
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- المنتج 2 -->
+                <div class="product-card">
+                    <img src="images/o1.jpg" class="product-img" alt="روبوت خدمي" onerror="handleImageError(this, 'product')">
+                    <div class="product-info">
+                        <h3 class="product-name">🏠 روبوت خدمي منزلي</h3>
+                        <p class="product-description">مساعد منزلي ذكي يمكنه التنظيف والترتيب والتفاعل مع الأجهزة الذكية.</p>
+                        <div class="product-price">$2,800</div>
+                        <button class="add-to-cart" onclick="addToCart('🏠 روبوت خدمي منزلي', 2800)">
+                            <i class="fas fa-cart-plus"></i> أضف إلى السلة
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- المنتج 3 -->
+                <div class="product-card">
+                    <img src="images/o2.jpg" class="product-img" alt="روبوت تعليمي" onerror="handleImageError(this, 'product')">
+                    <div class="product-info">
+                        <h3 class="product-name">🎓 روبوت تعليمي</h3>
+                        <p class="product-description">مصمم لتعليم البرمجة والروبوتات للمبتدئين. مناسب للمدارس والجامعات.</p>
+                        <div class="product-price">$450</div>
+                        <button class="add-to-cart" onclick="addToCart('🎓 روبوت تعليمي', 450)">
+                            <i class="fas fa-cart-plus"></i> أضف إلى السلة
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- المنتج 4 -->
+                <div class="product-card">
+                    <img src="images/o3.jpg" class="product-img" alt="ذراع روبوتي" onerror="handleImageError(this, 'product')">
+                    <div class="product-info">
+                        <h3 class="product-name">🦾 ذراع روبوتي دقيق</h3>
+                        <p class="product-description">ذراع روبوتي عالي الدقة للمهام الجراحية والمختبرات الدقيقة.</p>
+                        <div class="product-price">$8,900</div>
+                        <button class="add-to-cart" onclick="addToCart('🦾 ذراع روبوتي دقيق', 8900)">
+                            <i class="fas fa-cart-plus"></i> أضف إلى السلة
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- المنتج 5 -->
+                <div class="product-card">
+                    <img src="images/o4.jpg" class="product-img" alt="روبوت ترفيهي" onerror="handleImageError(this, 'product')">
+                    <div class="product-info">
+                        <h3 class="product-name">🎭 روبوت ترفيهي</h3>
+                        <p class="product-description">روبوت تفاعلي للترفيه المنزلي، يغني، يرقص، ويحكي القصص.</p>
+                        <div class="product-price">$620</div>
+                        <button class="add-to-cart" onclick="addToCart('🎭 روبوت ترفيهي', 620)">
+                            <i class="fas fa-cart-plus"></i> أضف إلى السلة
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- المنتج 6 -->
+                <div class="product-card">
+                    <img src="images/o5.jpg" class="product-img" alt="روبوت أمني" onerror="handleImageError(this, 'product')">
+                    <div class="product-info">
+                        <h3 class="product-name">🚨 روبوت أمني</h3>
+                        <p class="product-description">روبوت مراقبة وأمن متحرك مزود بكاميرات 360 درجة ومستشعرات حركة.</p>
+                        <div class="product-price">$7,500</div>
+                        <button class="add-to-cart" onclick="addToCart('🚨 روبوت أمني', 7500)">
+                            <i class="fas fa-cart-plus"></i> أضف إلى السلة
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- الفوتر -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>🏢 The World of Robotics</h3>
+                    <p style="font-size: 1.05rem; line-height: 1.8;">نحن رواد في تقديم أحدث حلول الروبوتات والذكاء الاصطناعي للصناعة والمنزل والتعليم.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>📞 تواصل معنا</h3>
+                    <div class="contact-info">
+                        <p><i class="fas fa-phone"></i> +20 12 81612188</p>
+                        <p><i class="fab fa-whatsapp"></i> واتساب: +20 12 81612188</p>
+                        <p><i class="fas fa-envelope"></i> order@worldofrobotics.com</p>
+                        <p><i class="fas fa-map-marker-alt"></i> القاهرة، مصر</p>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>⏰ خدماتنا</h3>
+                    <div class="contact-info">
+                        <p><i class="fas fa-clock"></i> يومياً: 9 صباحاً - 9 مساءً</p>
+                        <p><i class="fas fa-headset"></i> خدمة العملاء 24/7</p>
+                        <p><i class="fas fa-shipping-fast"></i> التوصيل: 2-3 أيام عمل</p>
+                        <p><i class="fas fa-undo"></i> سياسة الإرجاع: 7 أيام</p>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2024 The World of Robotics. جميع الحقوق محفوظة. | للاستفسارات: +20 12 81612188</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let cart = [];
+        
+        function handleImageError(imgElement, type) {
+            if(type === 'logo') {
+                imgElement.outerHTML = '<div style="width:70px;height:70px;border-radius:15px;background:linear-gradient(135deg,#00bcd4,#1a237e);display:flex;align-items:center;justify-content:center;color:white;font-size:1.8rem;font-weight:bold;border:3px solid #00bcd4;box-shadow:0 0 25px rgba(0,188,212,0.6)"><i class="fas fa-robot"></i></div>';
+            } else if(type === 'product') {
+                imgElement.outerHTML = '<div style="width:100%;height:220px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#f0f0f0,#e0e0e0);color:#666;font-weight:bold;font-size:1.1rem;border-radius:20px 20px 0 0;">🤖 صورة المنتج</div>';
+            }
+        }
+
+        function updateCart() {
+            const cartItems = document.getElementById('cart-items');
+            const cartTotal = document.getElementById('cart-total');
+            const cartCount = document.getElementById('cart-count');
+            
+            cartItems.innerHTML = '';
+            let total = 0;
+            
+            cart.forEach((item, index) => {
+                total += item.price;
+                
+                const itemElement = document.createElement('div');
+                itemElement.className = 'cart-item';
+                itemElement.innerHTML = `
+                    <div class="cart-item-name">${item.name}</div>
+                    <div class="cart-item-price">$${item.price}</div>
+                    <button class="remove-item" onclick="removeFromCart(${index})">
+                        <i class="fas fa-times"></i>
+                    </button>
+                `;
+                cartItems.appendChild(itemElement);
+            });
+            
+            cartTotal.textContent = total.toLocaleString();
+            cartCount.textContent = cart.length;
+            
+            localStorage.setItem('roboticsCart', JSON.stringify(cart));
+        }
+        
+        function addToCart(name, price) {
+            cart.push({ name, price });
+            updateCart();
+            showNotification(`✅ تمت إضافة "${name}" إلى السلة`, 'success');
+        }
+        
+        function removeFromCart(index) {
+            const removedItem = cart[index].name;
+            cart.splice(index, 1);
+            updateCart();
+            showNotification(`🗑️ تمت إزالة "${removedItem}" من السلة`);
+        }
+        
+        function clearCart() {
+            if (cart.length === 0) {
+                showNotification('⚠️ السلة فارغة بالفعل');
+                return;
+            }
+            
+            if (confirm('هل أنت متأكد من إفراغ سلة التسوق؟')) {
+                cart = [];
+                updateCart();
+                showNotification('✅ تم إفراغ سلة التسوق', 'success');
+            }
+        }
+        
+        function checkout() {
+            if (cart.length === 0) {
+                showNotification('⚠️ السلة فارغة. أضف منتجات أولاً');
+                return;
+            }
+            
+            const phoneNumber = "+201281612188";
+            
+            // ========== رسالة الطلب المحسنة والمفصلة ==========
+            let message = "🎉✨🚀🚀🚀✨🎉\n";
+            message += "🎊 طلب جديد من The World of Robotics 🎊\n";
+            message += "🚀✨🚀✨🚀✨🚀\n\n";
+            
+            message += "📋📋📋 تفاصيل الطلب 📋📋📋\n";
+            message += "══════════════════════\n";
+            
+            let total = 0;
+            cart.forEach((item, index) => {
+                message += `${index + 1}. ${item.name}\n`;
+                message += `   💰 السعر: $${item.price.toLocaleString()}\n`;
+                message += `   ──────────────────\n`;
+                total += item.price;
+            });
+            
+            message += "\n💰💰💰 ملخص الفاتورة 💰💰💰\n";
+            message += "══════════════════════\n";
+            message += `📊 عدد المنتجات: ${cart.length} منتج\n`;
+            message += `💰 الإجمالي: $${total.toLocaleString()}\n`;
+            
+            // رسوم إضافية
+            const shippingFee = 20;
+            const taxRate = 0.14;
+            const taxAmount = total * taxRate;
+            const finalTotal = total + shippingFee + taxAmount;
+            
+            message += `📦 رسوم الشحن: $${shippingFee}\n`;
+            message += `🏛️ الضريبة (14%): $${taxAmount.toFixed(2)}\n`;
+            message += `💵 الإجمالي النهائي: $${finalTotal.toFixed(2)}\n\n`;
+            
+            message += "💳💳💳 طرق الدفع المتاحة 💳💳💳\n";
+            message += "══════════════════════\n";
+            message += "1️⃣ فودافون كاش:\n";
+            message += "   📱 الرقم: 01281612188\n";
+            message += "   📸 يرجى إرسال صورة الإيصال\n\n";
+            
+            message += "2️⃣ بطاقة ائتمان:\n";
+            message += "   💳 فيزا / ماستركارد\n";
+            message += "   📞 سيتم التواصل لتأكيد الدفع\n\n";
+            
+            message += "3️⃣ الدفع عند الاستلام:\n";
+            message += "   🚚 الدفع نقداً عند التسليم\n";
+            message += "   📦 متاح في جميع أنحاء مصر\n\n";
+            
+            message += "4️⃣ حوالة بنكية:\n";
+            message += "   🏦 سيتم إرسال بيانات الحساب\n";
+            message += "   📸 يرجى إرسال صورة الإيصال\n\n";
+            
+            message += "🏠🏠🏠 معلومات التوصيل المطلوبة 🏠🏠🏠\n";
+            message += "══════════════════════\n";
+            message += "👤 الاسم الكامل:\n";
+            message += "   ______________________\n\n";
+            
+            message += "📍 العنوان التفصيلي:\n";
+            message += "   المحافظة:\n";
+            message += "   ______________________\n";
+            message += "   المدينة:\n";
+            message += "   ______________________\n";
+            message += "   العنوان بالتفصيل:\n";
+            message += "   ______________________\n\n";
+            
+            message += "📞 معلومات الاتصال:\n";
+            message += "   رقم الهاتف:\n";
+            message += "   ______________________\n";
+            message += "   رقم هاتف بديل (اختياري):\n";
+            message += "   ______________________\n\n";
+            
+            message += "💳 طريقة الدفع المفضلة:\n";
+            message += "   [ ] فودافون كاش\n";
+            message += "   [ ] بطاقة ائتمان\n";
+            message += "   [ ] الدفع عند الاستلام\n";
+            message += "   [ ] حوالة بنكية\n\n";
+            
+            message += "📝📝📝 معلومات إضافية 📝📝📝\n";
+            message += "══════════════════════\n";
+            message += `🆔 رقم الطلب: #${Math.floor(1000 + Math.random() * 9000)}\n`;
+            message += `📅 تاريخ الطلب: ${new Date().toLocaleDateString('ar-EG', { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            })}\n`;
+            message += `⏰ وقت الطلب: ${new Date().toLocaleTimeString('ar-EG')}\n\n`;
+            
+            message += "🚚🚚🚚 معلومات الشحن 🚚🚚🚚\n";
+            message += "══════════════════════\n";
+            message += "📦 مدة التوصيل: 2-3 أيام عمل\n";
+            message += "⏰ مواعيد التوصيل: 9 ص - 9 م\n";
+            message += "📞 متابعة الطلب: 01281612188\n\n";
+            
+            message += "📞📞📞 خدمة العملاء 📞📞📞\n";
+            message += "══════════════════════\n";
+            message += "👨‍💼 للاستفسارات والمتابعة:\n";
+            message += "📱 واتساب: +20 12 81612188\n";
+            message += "📞 هاتف: +20 12 81612188\n";
+            message += "⏰ متاحون: 24/7\n\n";
+            
+            message += "🎉🎉🎉 شكراً لثقتكم 🎉🎉🎉\n";
+            message += "══════════════════════\n";
+            message += "نشكركم على اختياركم The World of Robotics\n";
+            message += "نتطلع لخدمتكم دائماً 🤖✨\n";
+            message += "🎊✨🚀🚀🚀✨🎊";
+            // ========== نهاية الرسالة ==========
+            
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+            
+            window.open(whatsappURL, '_blank');
+            showNotification('📱 جارٍ فتح واتساب لإرسال تفاصيل طلبك...', 'success');
+            
+            setTimeout(() => {
+                cart = [];
+                updateCart();
+                toggleCart();
+            }, 2000);
+        }
+        
+        function contactCustomerService() {
+            const phoneNumber = "+201281612188";
+            const message = "👋 مرحباً، أود الاستفسار عن:\n\n";
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+            
+            window.open(whatsappURL, '_blank');
+            showNotification('📞 جارٍ فتح واتساب خدمة العملاء...');
+        }
+        
+        function toggleCart() {
+            const cartSection = document.getElementById('cart-section');
+            if (cartSection.style.display === 'block') {
+                cartSection.style.display = 'none';
+            } else {
+                cartSection.style.display = 'block';
+                cartSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+        
+        function showNotification(text, type = 'info') {
+            const oldNotification = document.querySelector('.notification');
+            if (oldNotification) {
+                oldNotification.remove();
+            }
+            
+            const notification = document.createElement('div');
+            notification.className = type === 'success' ? 'notification success' : 'notification';
+            notification.textContent = text;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                notification.style.transform = 'translateY(-20px)';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedCart = localStorage.getItem('roboticsCart');
+            if (savedCart) {
+                cart = JSON.parse(savedCart);
+                updateCart();
+            }
+            
+            const productCards = document.querySelectorAll('.product-card');
+            productCards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 150);
+            });
+            
+            document.body.style.fontFamily = "'Tajawal', 'Segoe UI', sans-serif";
+        });
+    </script>
+</body>
+</html>
