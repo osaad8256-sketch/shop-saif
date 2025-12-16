@@ -1,4 +1,16 @@
-collections:
-  site_content:
-    folder: content
-    editable: true
+collections_config:
+  content:
+    path: content
+    icon: wysiwyg
+    disable_url: true
+    disable_add: false
+    disable_add_folder: false
+    disable_file_actions: false
+  pages:
+    path: content/pages
+    icon: wysiwyg
+    disable_url: true
+    disable_add: false
+    disable_add_folder: false
+    disable_file_actions: false
+
