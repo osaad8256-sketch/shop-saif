@@ -1,0 +1,13 @@
+{
+  "ssg": "astro",
+  "mode": "hosted",
+  "build": {
+    "hugoVersion": "0.128.1",
+    "rubyVersion": "2.7.3",
+    "nodeVersion": "18",
+    "denoVersion": "1.40.2",
+    "install_command": "echo \"No install needed",
+    "output_path": ".",
+    "build_command": "echo \"No build needed\""
+  }
+}
