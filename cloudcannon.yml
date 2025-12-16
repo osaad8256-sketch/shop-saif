@@ -1,0 +1,4 @@
+collections:
+  site_content:
+    folder: content
+    editable: true
