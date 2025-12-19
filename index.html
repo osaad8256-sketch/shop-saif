@@ -1988,5 +1988,22 @@
             });
         });
     </script>
+    <!-- كود جلب المنتجات من Google Sheet -->
+<script>
+fetch("https://opensheet.elk.sh/1XivkX8Acr-AQvtvk427FHMlvuP1ShZyn47fLNdYSlaw/Sheet1")
+  .then(res => res.json())
+  .then(data => {
+    document.getElementById("products").innerHTML = data.map(p => `
+      <div class="product">
+        <img src="${p.image}" alt="${p.title}">
+        <h3>${p.title}</h3>
+        <p>${p.description}</p>
+        <b>${p.price} جنيه</b>
+      </div>
+    `).join("");
+  });
+</script>
+
 </body>
+
 </html>
