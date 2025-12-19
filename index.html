@@ -564,6 +564,8 @@
             position: relative;
             border: 2px solid transparent;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            transform: translateY(30px) scale(0.95);
         }
         
         body.light-mode .product-card {
@@ -908,6 +910,26 @@
         
         .close-payment:hover {
             transform: rotate(90deg) scale(1.1);
+        }
+        
+        /* 🔄 زر تحديث المنتجات */
+        .refresh-products-btn {
+            display: block;
+            margin: 20px auto;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+        
+        .refresh-products-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(155, 89, 182, 0.4);
         }
         
         /* 📱 التجاوب */
@@ -1342,7 +1364,7 @@
             </div>
             
             <div class="cart-actions" style="margin-top: 20px;">
-                <button class="clear-cart" onclick="clearCart()">
+                <button onclick="clearCart()" style="padding: 10px 20px; background: #e74c3c; color: white; border: none; border-radius: 10px; cursor: pointer;">
                     <i class="fas fa-trash"></i> إفراغ السلة
                 </button>
             </div>
@@ -1354,135 +1376,14 @@
         <div class="container">
             <h2 class="section-title">🤖 منتجاتنا المتطورة</h2>
             
-            <div class="products-grid">
-                <!-- Product 1 -->
-                <div class="product-card featured">
-                    <div class="product-img-container">
-                        <span class="product-badge">الأكثر مبيعًا</span>
-                        <img src="images/o.jpg" class="product-img" alt="روبوت صناعي" onerror="handleImageError(this, 'product')">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name"><i class="fas fa-industry"></i> روبوت صناعي متقدم</h3>
-                        <p class="product-description">
-                            روبوت صناعي ذو 6 محاور بدقة ±0.02 مم، مثالي لأتمتة خطوط الإنتاج الدقيقة. 
-                            مزود بتقنية الرؤية الحاسوبية ويمكن دمجه مع أنظمة الذكاء الاصطناعي.
-                        </p>
-                        <div class="product-price-container">
-                            <div class="product-price">1,499 ج.م</div>
-                            <div class="product-discount">شامل الضريبة</div>
-                        </div>
-                        <button class="add-to-cart" onclick="addToCart('روبوت صناعي متقدم', 1499)">
-                            <i class="fas fa-cart-plus"></i> أضف إلى السلة
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Product 2 -->
-                <div class="product-card">
-                    <div class="product-img-container">
-                        <img src="images/o1.jpg" class="product-img" alt="روبوت خدمي" onerror="handleImageError(this, 'product')">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name"><i class="fas fa-home"></i> روبوت خدمي منزلي</h3>
-                        <p class="product-description">
-                            مساعد منزلي ذكي متكامل يمكنه التنظيف، الترتيب، التحكم بالأجهزة الذكية، 
-                            وحتى العناية بكبار السن. يتفهم الأوامر الصوتية ويتكيف مع عادات الأسرة.
-                        </p>
-                        <div class="product-price-container">
-                            <div class="product-price">1,299 ج.م</div>
-                            <div class="product-discount">شامل التركيب</div>
-                        </div>
-                        <button class="add-to-cart" onclick="addToCart('روبوت خدمي منزلي', 1299)">
-                            <i class="fas fa-cart-plus"></i> أضف إلى السلة
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Product 3 -->
-                <div class="product-card">
-                    <div class="product-img-container">
-                        <span class="product-badge">للتعليم</span>
-                        <img src="images/o2.jpg" class="product-img" alt="روبوت تعليمي" onerror="handleImageError(this, 'product')">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name"><i class="fas fa-graduation-cap"></i> روبوت تعليمي</h3>
-                        <p class="product-description">
-                            مصمم خصيصًا لتعليم البرمجة والروبوتات للمبتدئين من عمر 8 سنوات. 
-                            يتضمن 50 مشروعًا تعليميًا، تطبيقات تفاعلية، ودروسًا مرئية.
-                        </p>
-                        <div class="product-price-container">
-                            <div class="product-price">450 ج.م</div>
-                            <div class="product-discount">شامل الكورس</div>
-                        </div>
-                        <button class="add-to-cart" onclick="addToCart('روبوت تعليمي', 450)">
-                            <i class="fas fa-cart-plus"></i> أضف إلى السلة
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Product 4 -->
-                <div class="product-card">
-                    <div class="product-img-container">
-                        <img src="images/o3.jpg" class="product-img" alt="ذراع روبوتي" onerror="handleImageError(this, 'product')">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name"><i class="fas fa-hand-paper"></i> ذراع روبوتي دقيق</h3>
-                        <p class="product-description">
-                            ذراع روبوتي عالي الدقة للمهام الجراحية والمختبرات الدقيقة. 
-                            دقة تصل إلى 0.01 مم مع نظام تحكم عن بعد وتقنية الاهتزاز الصفري.
-                        </p>
-                        <div class="product-price-container">
-                            <div class="product-price">1,450 ج.م</div>
-                            <div class="product-discount">شهادة معايرة</div>
-                        </div>
-                        <button class="add-to-cart" onclick="addToCart('ذراع روبوتي دقيق', 1450)">
-                            <i class="fas fa-cart-plus"></i> أضف إلى السلة
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Product 5 -->
-                <div class="product-card">
-                    <div class="product-img-container">
-                        <span class="product-badge">ترفيهي</span>
-                        <img src="images/o4.jpg" class="product-img" alt="روبوت ترفيهي" onerror="handleImageError(this, 'product')">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name"><i class="fas fa-music"></i> روبوت ترفيهي</h3>
-                        <p class="product-description">
-                            روبوت تفاعلي للترفيه المنزلي، يغني، يرقص، يحكي القصص، ويلعب الألعاب. 
-                            مزود بمكتبة تحتوي على 1000 قصة و500 أغنية تعليمية.
-                        </p>
-                        <div class="product-price-container">
-                            <div class="product-price">620 ج.م</div>
-                            <div class="product-discount">شامل الاشتراك</div>
-                        </div>
-                        <button class="add-to-cart" onclick="addToCart('روبوت ترفيهي', 620)">
-                            <i class="fas fa-cart-plus"></i> أضف إلى السلة
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Product 6 -->
-                <div class="product-card">
-                    <div class="product-img-container">
-                        <img src="images/o5.jpg" class="product-img" alt="روبوت أمني" onerror="handleImageError(this, 'product')">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name"><i class="fas fa-shield-alt"></i> روبوت أمني</h3>
-                        <p class="product-description">
-                            روبوت مراقبة وأمن متحرك مزود بكاميرات 360 درجة، مستشعرات حركة، 
-                            وأجهزة استشعار حرارية. يتصل مباشرة بمركز الأمن ويمكن التحكم فيه عن بعد.
-                        </p>
-                        <div class="product-price-container">
-                            <div class="product-price">1,350 ج.م</div>
-                            <div class="product-discount">مراقبة 24/7</div>
-                        </div>
-                        <button class="add-to-cart" onclick="addToCart('روبوت أمني', 1350)">
-                            <i class="fas fa-cart-plus"></i> أضف إلى السلة
-                        </button>
-                    </div>
-                </div>
+            <!-- 🔄 زر تحديث المنتجات -->
+            <button class="refresh-products-btn" onclick="loadProductsFromGoogleSheet()" id="refresh-products-btn">
+                <i class="fas fa-sync-alt"></i> تحديث المنتجات من Google Sheet
+            </button>
+            
+            <!-- 📦 حاوية المنتجات -->
+            <div class="products-grid" id="products-container">
+                <!-- المنتجات سيتم تعبئتها جيناميكياً من JavaScript -->
             </div>
         </div>
     </section>
@@ -1529,6 +1430,7 @@
         // 🛒 نظام سلة التسوق
         let cart = [];
         let currentOrderNumber = '';
+        let isGoogleSheetLoaded = false;
         
         // 🖼️ معالجة أخطاء الصور
         function handleImageError(imgElement, type) {
@@ -1938,6 +1840,142 @@
             }, 4000);
         }
         
+        // 📊 جلب المنتجات من Google Sheet
+        async function loadProductsFromGoogleSheet() {
+            try {
+                console.log('🔄 جاري تحميل المنتجات من Google Sheet...');
+                
+                // 🔗 رابط الـ Sheet الخاص بك
+                const sheetUrl = "https://opensheet.elk.sh/1XivkX8Acr-AQvtvk427FHMlvuP1ShZyn47fLNdYSlaw/Sheet1";
+                
+                // إظهار تحميل
+                showNotification('🔄 جاري تحميل المنتجات من Google Sheet...', 'info');
+                
+                const response = await fetch(sheetUrl);
+                const products = await response.json();
+                
+                console.log('✅ المنتجات المستلمة:', products);
+                
+                // عرض المنتجات
+                displayProductsFromSheet(products);
+                
+                isGoogleSheetLoaded = true;
+                showNotification(`✅ تم تحميل ${products.length} منتج من Google Sheet`, 'success');
+                
+            } catch (error) {
+                console.error('❌ خطأ في جلب المنتجات:', error);
+                showNotification('⚠️ حدث خطأ في تحميل المنتجات من Google Sheet', 'error');
+                
+                // إذا فشل التحميل، استخدم المنتجات الافتراضية
+                if (!isGoogleSheetLoaded) {
+                    loadDefaultProducts();
+                }
+            }
+        }
+        
+        // 🎨 عرض المنتجات من Google Sheet
+        function displayProductsFromSheet(products) {
+            const productsContainer = document.getElementById('products-container');
+            
+            if (!productsContainer) {
+                console.error('❌ لم يتم العثور على حاوية المنتجات');
+                return;
+            }
+            
+            // تصفية المنتجات الفارغة
+            const validProducts = products.filter(product => 
+                product.title && product.title.trim() !== '' && product.price
+            );
+            
+            // إذا لم توجد منتجات صالحة، استخدم المنتجات الافتراضية
+            if (validProducts.length === 0) {
+                console.warn('⚠️ لا توجد منتجات صالحة في الـ Sheet');
+                loadDefaultProducts();
+                return;
+            }
+            
+            // مسح المنتجات القديمة
+            productsContainer.innerHTML = '';
+            
+            // بناء بطاقات المنتجات الجديدة
+            validProducts.forEach((product, index) => {
+                // تحويل السعر إلى رقم
+                const price = parseFloat(product.price) || 0;
+                
+                // تحديد إذا كان منتج مميز (بناءً على السعر أو أي معيار آخر)
+                const isFeatured = price > 1000;
+                const featuredClass = isFeatured ? 'featured' : '';
+                const badge = isFeatured ? 
+                    `<span class="product-badge">الأكثر مبيعًا</span>` : '';
+                
+                // إنشاء عنصر المنتج
+                const productCard = document.createElement('div');
+                productCard.className = `product-card ${featuredClass}`;
+                productCard.innerHTML = `
+                    <div class="product-img-container">
+                        ${badge}
+                        <img src="${product.image || 'https://via.placeholder.com/350x250/2ecc71/ffffff?text=روبوت'}" 
+                             class="product-img" 
+                             alt="${product.title}"
+                             onerror="this.src='https://via.placeholder.com/350x250/3498db/ffffff?text=روبوت'">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">
+                            <i class="fas fa-robot"></i> ${product.title}
+                        </h3>
+                        <p class="product-description">
+                            ${product.description || 'منتج روبوتي متطور'}
+                        </p>
+                        <div class="product-price-container">
+                            <div class="product-price">${price.toLocaleString()} ج.م</div>
+                            <div class="product-discount">من Google Sheet</div>
+                        </div>
+                        <button class="add-to-cart" 
+                                onclick="addToCart('${product.title.replace(/'/g, "\\'")}', ${price})">
+                            <i class="fas fa-cart-plus"></i> أضف إلى السلة
+                        </button>
+                    </div>
+                `;
+                
+                productsContainer.appendChild(productCard);
+                
+                // تأثير الظهور التدريجي
+                setTimeout(() => {
+                    productCard.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                    productCard.style.opacity = '1';
+                    productCard.style.transform = 'translateY(0) scale(1)';
+                }, index * 100);
+            });
+        }
+        
+        // 📦 تحميل المنتجات الافتراضية
+        function loadDefaultProducts() {
+            const productsContainer = document.getElementById('products-container');
+            
+            const defaultProducts = [
+                {
+                    title: "روبوت صناعي متقدم",
+                    price: 1499,
+                    description: "روبوت صناعي ذو 6 محاور بدقة ±0.02 مم، مثالي لأتمتة خطوط الإنتاج الدقيقة",
+                    image: "images/o.jpg"
+                },
+                {
+                    title: "روبوت خدمي منزلي",
+                    price: 1299,
+                    description: "مساعد منزلي ذكي متكامل يمكنه التنظيف، الترتيب، التحكم بالأجهزة الذكية",
+                    image: "images/o1.jpg"
+                },
+                {
+                    title: "روبوت تعليمي",
+                    price: 450,
+                    description: "مصمم خصيصًا لتعليم البرمجة والروبوتات للمبتدئين من عمر 8 سنوات",
+                    image: "images/o2.jpg"
+                }
+            ];
+            
+            displayProductsFromSheet(defaultProducts);
+        }
+        
         // 📱 تحميل الإعدادات عند بدء التشغيل
         document.addEventListener('DOMContentLoaded', function() {
             // تحميل سلة التسوق من الذاكرة المحلية
@@ -1959,18 +1997,18 @@
                 document.getElementById('theme-icon').className = 'fas fa-sun';
             }
             
-            // تأثيرات للمنتجات عند التحميل
-            const productCards = document.querySelectorAll('.product-card');
-            productCards.forEach((card, index) => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(50px) scale(0.9)';
-                
-                setTimeout(() => {
-                    card.style.transition = 'opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
-                    card.style.opacity = '1';
-                    card.style.transform = 'translateY(0) scale(1)';
-                }, index * 200);
-            });
+            // 📥 جلب المنتجات من Google Sheet بعد تحميل الصفحة
+            setTimeout(() => {
+                loadProductsFromGoogleSheet();
+            }, 1000);
+            
+            // تحديث المنتجات كل 5 دقائق
+            setInterval(() => {
+                if (isGoogleSheetLoaded) {
+                    console.log('🔄 تحديث المنتجات من Google Sheet...');
+                    loadProductsFromGoogleSheet();
+                }
+            }, 300000); // كل 5 دقائق
             
             // تعيين الخط العربي
             document.body.style.fontFamily = "'Tajawal', 'Segoe UI', sans-serif";
@@ -1978,7 +2016,7 @@
             // عرض رسالة ترحيب
             setTimeout(() => {
                 showNotification('مرحبًا بك في The World of Robotics! 🤖', 'success');
-            }, 1000);
+            }, 2000);
             
             // إغلاق صفحة الدفع عند الضغط على ESC
             document.addEventListener('keydown', function(e) {
@@ -1988,8 +2026,5 @@
             });
         });
     </script>
-
 </body>
-
 </html>
-
