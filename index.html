@@ -7,7 +7,7 @@
     
     <!-- 🔗 رابط Google Apps Script -->
     <script>
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzutua9owSkXB0r-Alg_vjEZir2Lp3UkRVZ0PMu6DEaO2QmRqxodfhL0NTcybfmacqI/exec';
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyiq4tzE4xsa0PzHXo121wiCOme-G5zg2rAsmEnTDzvq0D8rAuiNwzCIRE30--emdC0/exec';
     </script>
     
     <style>
@@ -961,6 +961,32 @@
             transform: rotate(90deg) scale(1.1);
         }
         
+        /* 🔄 زر تحديث المنتجات */
+        .refresh-products-btn {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(52, 152, 219, 0.4);
+            z-index: 1002;
+            transition: all 0.3s ease;
+            border: 2px solid white;
+        }
+        
+        .refresh-products-btn:hover {
+            transform: rotate(180deg) scale(1.1);
+            box-shadow: 0 8px 25px rgba(52, 152, 219, 0.6);
+        }
+        
         /* 📱 التجاوب */
         @media (max-width: 1200px) {
             .container {
@@ -1065,6 +1091,14 @@
                 font-size: 1.2rem;
             }
             
+            .refresh-products-btn {
+                top: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+            
             .payment-page {
                 padding: 20px;
             }
@@ -1137,6 +1171,14 @@
                 top: 15px;
                 width: 45px;
                 height: 45px;
+            }
+            
+            .refresh-products-btn {
+                right: 15px;
+                top: 15px;
+                width: 45px;
+                height: 45px;
+                font-size: 1.2rem;
             }
             
             .social-icons {
@@ -1331,6 +1373,11 @@
     <!-- 🎨 زر الوضع الداكن/الفاتح -->
     <div class="theme-toggle" onclick="toggleTheme()">
         <i class="fas fa-moon" id="theme-icon"></i>
+    </div>
+
+    <!-- 🔄 زر تحديث المنتجات -->
+    <div class="refresh-products-btn" onclick="forceRefreshProducts()" title="تحديث المنتجات من Google Sheets">
+        <i class="fas fa-sync-alt"></i>
     </div>
 
     <!-- 🛒 Cart Icon -->
@@ -1909,44 +1956,95 @@
         }
         
         // ============================================
-        // 🔗 نظام Google Sheets
+        // 🔗 نظام Google Sheets - الإصدار المصحح
         // ============================================
         
         // 📦 جلب المنتجات من Google Sheets
         async function loadProductsFromGoogleSheets() {
             try {
                 console.log('🔄 جلب البيانات من Google Sheets...');
+                console.log('🔗 الرابط:', GOOGLE_SCRIPT_URL);
                 
-                // جلب البيانات من Apps Script
+                // عرض مؤشر تحميل
+                const productsGrid = document.getElementById('dynamic-products');
+                if (productsGrid) {
+                    productsGrid.innerHTML = `
+                        <div style="grid-column: 1 / -1; text-align: center; padding: 50px;">
+                            <div class="spinner" style="margin: 0 auto; width: 60px; height: 60px; border: 5px solid rgba(46, 204, 113, 0.3); border-top: 5px solid #2ecc71; border-radius: 50%; animation: spin 1s linear infinite;"></div>
+                            <p style="margin-top: 20px; color: #2ecc71; font-size: 1.2rem;">جاري تحميل المنتجات...</p>
+                        </div>
+                    `;
+                }
+                
+                // جلب البيانات
                 const response = await fetch(GOOGLE_SCRIPT_URL);
-                const products = await response.json();
+                console.log('📡 حالة الاستجابة:', response.status);
                 
-                console.log('✅ البيانات المستلمة:', products);
+                if (!response.ok) {
+                    throw new Error(`خطأ في الاستجابة: ${response.status}`);
+                }
                 
-                if (products && products.length > 0) {
-                    // إخفاء المنتجات الافتراضية
-                    document.getElementById('default-products').style.display = 'none';
-                    // عرض المنتجات من Google Sheets
-                    displayProductsFromSheets(products);
+                const data = await response.json();
+                console.log('📊 البيانات الكاملة:', data);
+                
+                // ⚠️ الإصلاح: البيانات تأتي في data.products وليس data مباشرة
+                if (data.success && data.products && data.products.length > 0) {
+                    console.log(`✅ تم جلب ${data.products.length} منتج بنجاح`);
+                    displayProductsFromSheets(data.products);
                 } else {
-                    console.warn('⚠️ لا توجد منتجات في الجدول، عرض المنتجات الافتراضية');
+                    console.warn('⚠️ لا توجد منتجات في الجدول');
                     showDefaultProducts();
                 }
+                
             } catch (error) {
-                console.error('❌ خطأ في الاتصال بـ Google Sheets:', error);
-                showDefaultProducts();
+                console.error('❌ خطأ في الاتصال:', error);
+                console.error('تفاصيل الخطأ:', error.message);
+                
+                // عرض رسالة خطأ
+                const productsGrid = document.getElementById('dynamic-products');
+                if (productsGrid) {
+                    productsGrid.innerHTML = `
+                        <div style="grid-column: 1 / -1; text-align: center; padding: 50px;">
+                            <i class="fas fa-exclamation-triangle" style="font-size: 3rem; color: #e74c3c; margin-bottom: 20px;"></i>
+                            <h3 style="color: #e74c3c;">خطأ في الاتصال</h3>
+                            <p>${error.message}</p>
+                            <button onclick="forceRefreshProducts()" 
+                                    style="margin-top: 20px; padding: 10px 20px; background: #3498db; color: white; border: none; border-radius: 10px; cursor: pointer;">
+                                <i class="fas fa-redo"></i> إعادة المحاولة
+                            </button>
+                        </div>
+                    `;
+                }
+                
+                // إظهار المنتجات الافتراضية بعد 2 ثانية
+                setTimeout(showDefaultProducts, 2000);
             }
         }
         
         // 🎯 عرض المنتجات من Google Sheets
         function displayProductsFromSheets(products) {
             const productsGrid = document.getElementById('dynamic-products');
-            if (!productsGrid) return;
+            if (!productsGrid) {
+                console.error('❌ لم يتم العثور على #dynamic-products');
+                return;
+            }
+            
+            console.log('🎨 عرض المنتجات:', products);
             
             productsGrid.innerHTML = '';
             
+            if (!products || products.length === 0) {
+                productsGrid.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 50px;">
+                        <i class="fas fa-robot" style="font-size: 4rem; color: #95a5a6; margin-bottom: 20px;"></i>
+                        <h3 style="color: #95a5a6;">لا توجد منتجات حالياً</h3>
+                        <p>سيتم إضافة المنتجات قريباً</p>
+                    </div>
+                `;
+                return;
+            }
+            
             products.forEach((product, index) => {
-                // إنشاء بطاقة المنتج
                 const productCard = document.createElement('div');
                 productCard.className = 'product-card';
                 if (index === 0) productCard.classList.add('featured');
@@ -1954,22 +2052,22 @@
                 productCard.innerHTML = `
                     <div class="product-img-container">
                         ${index === 0 ? '<span class="product-badge">الأكثر مبيعًا</span>' : ''}
-                        <img src="${product.image}" 
+                        <img src="${product.image || 'https://via.placeholder.com/400x300/3498db/fff?text=روبوت'}" 
                              class="product-img" 
-                             alt="${product.name}"
-                             onerror="this.src='https://via.placeholder.com/400x300/3498db/fff?text=${encodeURIComponent(product.name)}'">
+                             alt="${product.name || 'منتج'}"
+                             onerror="this.onerror=null; this.src='https://via.placeholder.com/400x300/3498db/fff?text=${encodeURIComponent(product.name || 'روبوت')}'">
                     </div>
                     <div class="product-info">
                         <h3 class="product-name">
-                            <i class="fas fa-robot"></i> ${product.name}
+                            <i class="fas fa-robot"></i> ${product.name || 'منتج جديد'}
                         </h3>
-                        <p class="product-description">${product.description}</p>
+                        <p class="product-description">${product.description || 'لا يوجد وصف'}</p>
                         <div class="product-price-container">
-                            <div class="product-price">${parseInt(product.price).toLocaleString()} ج.م</div>
-                            <div class="product-discount">${index === 0 ? 'شامل الضريبة' : 'شامل التركيب'}</div>
+                            <div class="product-price">${parseInt(product.price || 0).toLocaleString()} ج.م</div>
+                            <div class="product-discount">${product.price > 1000 ? 'شامل التركيب' : 'شامل الضريبة'}</div>
                         </div>
                         <button class="add-to-cart" 
-                                onclick="addToCart('${product.name.replace(/'/g, "\\'")}', ${product.price})">
+                                onclick="addToCart('${(product.name || '').replace(/'/g, "\\'")}', ${parseInt(product.price || 0)})">
                             <i class="fas fa-cart-plus"></i> أضف إلى السلة
                         </button>
                     </div>
@@ -1978,14 +2076,33 @@
                 productsGrid.appendChild(productCard);
             });
             
+            // إخفاء المنتجات الافتراضية
+            document.getElementById('default-products').style.display = 'none';
             console.log(`✅ تم عرض ${products.length} منتج من Google Sheets`);
+            
+            // إظهار إشعار النجاح
+            showNotification(`✅ تم تحميل ${products.length} منتج من Google Sheets`, 'success');
         }
         
         // 🏠 عرض المنتجات الافتراضية
         function showDefaultProducts() {
-            document.getElementById('default-products').style.display = 'grid';
-            document.getElementById('dynamic-products').style.display = 'none';
+            const defaultProducts = document.getElementById('default-products');
+            const dynamicProducts = document.getElementById('dynamic-products');
+            
+            if (defaultProducts) {
+                defaultProducts.style.display = 'grid';
+            }
+            if (dynamicProducts) {
+                dynamicProducts.style.display = 'none';
+            }
             console.log('🏠 عرض المنتجات الافتراضية');
+        }
+        
+        // 🔄 تحديث قسري للمنتجات
+        function forceRefreshProducts() {
+            console.log('🔄 تحديث قسري للمنتجات...');
+            showNotification('🔄 جاري تحديث المنتجات من Google Sheets...', 'info');
+            loadProductsFromGoogleSheets();
         }
         
         // ============================================
@@ -1993,6 +2110,7 @@
         // ============================================
         document.addEventListener('DOMContentLoaded', function() {
             console.log('🚀 موقع The World of Robotics جاهز!');
+            console.log('🔗 رابط Google Sheets:', GOOGLE_SCRIPT_URL);
             
             // 1. تحميل المنتجات من Google Sheets
             loadProductsFromGoogleSheets();
@@ -2042,34 +2160,23 @@
                 showNotification('⚠️ فقدان الاتصال بالإنترنت، جاري استخدام البيانات المخزنة', 'error');
             });
             
-            // 7. إضافة زر تحديث يدوي
-            const refreshBtn = document.createElement('button');
-            refreshBtn.innerHTML = '<i class="fas fa-sync-alt"></i>';
-            refreshBtn.style.position = 'fixed';
-            refreshBtn.style.bottom = '30px';
-            refreshBtn.style.left = '100px';
-            refreshBtn.style.zIndex = '1000';
-            refreshBtn.style.background = 'linear-gradient(135deg, #3498db, #2980b9)';
-            refreshBtn.style.color = 'white';
-            refreshBtn.style.border = '2px solid white';
-            refreshBtn.style.width = '60px';
-            refreshBtn.style.height = '60px';
-            refreshBtn.style.borderRadius = '50%';
-            refreshBtn.style.cursor = 'pointer';
-            refreshBtn.style.display = 'none'; // مخفي افتراضياً
-            refreshBtn.onclick = loadProductsFromGoogleSheets;
-            refreshBtn.title = 'تحديث المنتجات من Google Sheets';
-            document.body.appendChild(refreshBtn);
-            
-            // إظهار زر التحديث على الجوال فقط
-            if (window.innerWidth <= 768) {
-                refreshBtn.style.display = 'flex';
-                refreshBtn.style.alignItems = 'center';
-                refreshBtn.style.justifyContent = 'center';
-                refreshBtn.style.fontSize = '1.5rem';
-            }
-            
             console.log('✅ تم تحميل الموقع بنجاح!');
+            
+            // 7. اختبار الاتصال عند التحميل
+            setTimeout(() => {
+                console.log('🧪 اختبار الاتصال بـ Google Sheets...');
+                fetch(GOOGLE_SCRIPT_URL)
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('🎯 اختبار ناجح! البيانات:', data);
+                        if (data.success && data.products) {
+                            console.log(`📦 عدد المنتجات: ${data.products.length}`);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('❌ اختبار الاتصال فاشل:', error);
+                    });
+            }, 3000);
         });
         
         // ============================================
@@ -2099,6 +2206,16 @@
                     console.error('❌ فشل الاتصال:', error);
                     showNotification('❌ فشل الاتصال بـ Google Sheets', 'error');
                 });
+        }
+        
+        // 🔧 دالة لمعرفة حالة النظام
+        function systemStatus() {
+            return {
+                cartItems: cart.length,
+                theme: localStorage.getItem('theme') || 'dark',
+                googleScriptUrl: GOOGLE_SCRIPT_URL,
+                lastUpdate: new Date().toLocaleString()
+            };
         }
     </script>
 </body>
