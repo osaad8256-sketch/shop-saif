@@ -1,1 +1,19 @@
-
+{
+  "success": true,
+  "count": 3,
+  "products": [
+    {
+      "name": "روبوت من الشيت",
+      "description": "جاي من Google Sheets",
+      "price": 200,
+      "image": "https://files.catbox.moe/wsw0ey.jpeg"
+    },
+    {
+      "name": "روبوت جديد",
+      "description": "ضيفته دلوقتي",
+      "price": 999,
+      "image": "https://via.placeholder.com/400x300/2ecc71/fff?text=جديد"
+    }
+  ],
+  "lastUpdated": "2025-12-21"
+}
