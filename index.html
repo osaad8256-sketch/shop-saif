@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The World of Robotics - عالم الروبوتات المتطور</title>
     
-    <!-- 🔗 رابط Google Apps Script -->
+    <!-- 🔗 رابط Google Apps Script - ضع رابطك الجديد هنا -->
     <script>
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyiq4tzE4xsa0PzHXo121wiCOme-G5zg2rAsmEnTDzvq0D8rAuiNwzCIRE30--emdC0/exec';
+        // ⚠️ ⚠️ ⚠️ مهم: استبدل هذا الرابط برابط Web App الجديد
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby9iUa-gLuTYkJxSjq7vFJz2Z9IkFQuOvvmRomFt5pHw_UJJ52_aPQCk5Ela9k7nQco9A/exec';
     </script>
     
     <style>
@@ -406,51 +407,6 @@
             text-shadow: 0 2px 10px rgba(46, 204, 113, 0.5);
         }
         
-        /* 🛍️ زرين الدفع */
-        .payment-options {
-            display: flex;
-            gap: 20px;
-            margin-top: 30px;
-            flex-wrap: wrap;
-        }
-        
-        .payment-options button {
-            flex: 1;
-            min-width: 200px;
-            padding: 20px;
-            border: none;
-            border-radius: 15px;
-            font-weight: 700;
-            font-size: 1.2rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-            transition: all 0.3s ease;
-            min-height: 80px;
-        }
-        
-        .whatsapp-payment {
-            background: linear-gradient(135deg, #25d366, #128c7e);
-            color: white;
-        }
-        
-        .whatsapp-payment:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4);
-        }
-        
-        .website-payment {
-            background: linear-gradient(135deg, #3498db, #2980b9);
-            color: white;
-        }
-        
-        .website-payment:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(52, 152, 219, 0.4);
-        }
-        
         /* 🤖 قسم المنتجات */
         .hero-section {
             text-align: center;
@@ -780,418 +736,6 @@
             width: 25px;
         }
         
-        /* قسم وسائل التواصل الاجتماعي */
-        .social-media {
-            margin-top: 30px;
-        }
-        
-        .social-icons {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-            flex-wrap: wrap;
-        }
-        
-        .social-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        
-        .social-icon:hover {
-            transform: translateY(-5px) scale(1.1);
-        }
-        
-        .social-icon.facebook {
-            background: linear-gradient(135deg, #1877f2, #0d5cb6);
-        }
-        
-        .social-icon.instagram {
-            background: linear-gradient(135deg, #e4405f, #c13584);
-        }
-        
-        .social-icon.tiktok {
-            background: linear-gradient(135deg, #000000, #25f4ee);
-        }
-        
-        .social-icon.whatsapp {
-            background: linear-gradient(135deg, #25d366, #128c7e);
-        }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #7f8c8d;
-            font-size: 0.95rem;
-        }
-        
-        body.light-mode .copyright {
-            border-top: 1px solid rgba(0, 0, 0, 0.1);
-            color: #666;
-        }
-        
-        /* 🏦 صفحة الدفع بالموقع */
-        .payment-page {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 1004;
-            padding: 50px;
-            overflow-y: auto;
-            backdrop-filter: blur(10px);
-        }
-        
-        body.light-mode .payment-page {
-            background: rgba(255, 255, 255, 0.98);
-        }
-        
-        .payment-container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 25px;
-            padding: 40px;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
-            border: 3px solid var(--primary-color);
-        }
-        
-        body.light-mode .payment-container {
-            background: white;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
-        }
-        
-        .payment-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        
-        .payment-header h2 {
-            color: var(--primary-color);
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-        
-        .payment-header p {
-            color: #bdc3c7;
-            font-size: 1.1rem;
-        }
-        
-        body.light-mode .payment-header p {
-            color: #666;
-        }
-        
-        .payment-methods {
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-        
-        .payment-method {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 30px;
-            border-radius: 20px;
-            border: 2px solid transparent;
-            transition: all 0.3s ease;
-        }
-        
-        body.light-mode .payment-method {
-            background: rgba(0, 0, 0, 0.03);
-        }
-        
-        .payment-method:hover {
-            border-color: var(--primary-color);
-            transform: translateY(-5px);
-        }
-        
-        .payment-method h3 {
-            color: var(--primary-color);
-            margin-bottom: 20px;
-            font-size: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .payment-details {
-            background: rgba(0, 0, 0, 0.2);
-            padding: 20px;
-            border-radius: 15px;
-            margin-top: 15px;
-            font-family: monospace;
-            font-size: 1.1rem;
-            text-align: center;
-        }
-        
-        body.light-mode .payment-details {
-            background: rgba(0, 0, 0, 0.05);
-        }
-        
-        .close-payment {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            background: var(--danger-color);
-            color: white;
-            border: none;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            font-size: 1.5rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-        
-        .close-payment:hover {
-            transform: rotate(90deg) scale(1.1);
-        }
-        
-        /* 🔄 زر تحديث المنتجات */
-        .refresh-products-btn {
-            position: fixed;
-            top: 30px;
-            right: 30px;
-            background: linear-gradient(135deg, #3498db, #2980b9);
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            cursor: pointer;
-            box-shadow: 0 5px 20px rgba(52, 152, 219, 0.4);
-            z-index: 1002;
-            transition: all 0.3s ease;
-            border: 2px solid white;
-        }
-        
-        .refresh-products-btn:hover {
-            transform: rotate(180deg) scale(1.1);
-            box-shadow: 0 8px 25px rgba(52, 152, 219, 0.6);
-        }
-        
-        /* 📱 التجاوب */
-        @media (max-width: 1200px) {
-            .container {
-                width: 98%;
-                padding: 0 15px;
-            }
-            
-            .hero-title {
-                font-size: 2.8rem;
-            }
-            
-            .products-grid {
-                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-                gap: 30px;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                text-align: center;
-                gap: 20px;
-            }
-            
-            .logo-title-container {
-                justify-content: center;
-            }
-            
-            nav ul {
-                justify-content: center;
-                gap: 10px;
-            }
-            
-            .hero-title {
-                font-size: 2.2rem;
-            }
-            
-            .hero-subtitle {
-                font-size: 1.1rem;
-                padding: 0 20px;
-            }
-            
-            .stats {
-                gap: 20px;
-            }
-            
-            .stat-item {
-                min-width: 150px;
-                padding: 20px 25px;
-            }
-            
-            .section-title {
-                font-size: 2.2rem;
-            }
-            
-            .products-grid {
-                grid-template-columns: 1fr;
-                gap: 25px;
-            }
-            
-            .cart-section {
-                padding: 25px;
-                margin: 30px auto;
-            }
-            
-            .payment-options {
-                flex-direction: column;
-            }
-            
-            .payment-options button {
-                min-width: 100%;
-            }
-            
-            .cart-icon {
-                right: 20px;
-                bottom: 20px;
-                width: 60px;
-                height: 60px;
-                font-size: 1.4rem;
-            }
-            
-            .cart-count {
-                width: 25px;
-                height: 25px;
-                font-size: 0.8rem;
-                top: -3px;
-                right: -3px;
-            }
-            
-            .customer-service-btn {
-                left: 20px;
-                bottom: 100px;
-                padding: 15px 25px;
-                font-size: 1rem;
-            }
-            
-            .theme-toggle {
-                top: 20px;
-                left: 20px;
-                width: 50px;
-                height: 50px;
-                font-size: 1.2rem;
-            }
-            
-            .refresh-products-btn {
-                top: 20px;
-                right: 20px;
-                width: 50px;
-                height: 50px;
-                font-size: 1.2rem;
-            }
-            
-            .payment-page {
-                padding: 20px;
-            }
-            
-            .payment-container {
-                padding: 25px;
-            }
-            
-            @media (max-height: 700px) {
-                .cart-icon {
-                    bottom: 80px;
-                }
-                
-                .customer-service-btn {
-                    bottom: 150px;
-                }
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .hero-title {
-                font-size: 1.8rem;
-            }
-            
-            .site-title {
-                font-size: 1.8rem;
-            }
-            
-            nav ul li a {
-                padding: 10px 15px;
-                font-size: 0.9rem;
-            }
-            
-            .stat-item {
-                min-width: 120px;
-                padding: 15px 20px;
-            }
-            
-            .stat-number {
-                font-size: 2rem;
-            }
-            
-            .customer-service-btn span {
-                display: none;
-            }
-            
-            .customer-service-btn {
-                width: 60px;
-                height: 60px;
-                border-radius: 50%;
-                padding: 0;
-                justify-content: center;
-                bottom: 90px;
-                left: 20px;
-            }
-            
-            .customer-service-btn i {
-                font-size: 1.5rem;
-            }
-            
-            .cart-icon {
-                width: 60px;
-                height: 60px;
-                bottom: 20px;
-                right: 20px;
-            }
-            
-            .theme-toggle {
-                left: 15px;
-                top: 15px;
-                width: 45px;
-                height: 45px;
-            }
-            
-            .refresh-products-btn {
-                right: 15px;
-                top: 15px;
-                width: 45px;
-                height: 45px;
-                font-size: 1.2rem;
-            }
-            
-            .social-icons {
-                justify-content: center;
-            }
-            
-            .social-icon {
-                width: 45px;
-                height: 45px;
-                font-size: 1.3rem;
-            }
-        }
-        
         /* 🔔 الإشعارات */
         .notification {
             position: fixed;
@@ -1299,64 +843,6 @@
             from { opacity: 0; }
             to { opacity: 1; }
         }
-        
-        /* زر إغلاق السلة */
-        .close-cart {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            background: var(--danger-color);
-            color: white;
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            z-index: 1002;
-        }
-        
-        .cart-actions {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            margin-top: 20px;
-        }
-        
-        .cart-actions button {
-            padding: 12px 25px;
-            border: none;
-            border-radius: 10px;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.3s ease;
-        }
-        
-        .clear-cart {
-            background: var(--danger-color);
-            color: white;
-        }
-        
-        .clear-cart:hover {
-            background: #c0392b;
-            transform: translateY(-3px);
-        }
-        
-        .continue-shopping {
-            background: #95a5a6;
-            color: white;
-        }
-        
-        .continue-shopping:hover {
-            background: #7f8c8d;
-            transform: translateY(-3px);
-        }
     </style>
     
     <!-- الروابط الخارجية -->
@@ -1375,11 +861,6 @@
         <i class="fas fa-moon" id="theme-icon"></i>
     </div>
 
-    <!-- 🔄 زر تحديث المنتجات -->
-    <div class="refresh-products-btn" onclick="forceRefreshProducts()" title="تحديث المنتجات من Google Sheets">
-        <i class="fas fa-sync-alt"></i>
-    </div>
-
     <!-- 🛒 Cart Icon -->
     <div class="cart-icon" onclick="toggleCart()">
         <i class="fas fa-shopping-cart"></i>
@@ -1391,64 +872,6 @@
         <i class="fab fa-whatsapp"></i>
         <span>خدمة العملاء</span>
     </button>
-
-    <!-- 🏦 صفحة الدفع بالموقع -->
-    <div class="payment-page" id="payment-page">
-        <button class="close-payment" onclick="closePaymentPage()">
-            <i class="fas fa-times"></i>
-        </button>
-        <div class="payment-container">
-            <div class="payment-header">
-                <h2><i class="fas fa-credit-card"></i> إتمام عملية الدفع</h2>
-                <p>اختر طريقة الدفع المناسبة لك وأرسل إيصال التحويل لتأكيد طلبك</p>
-                <div class="cart-total" style="margin: 20px auto; max-width: 400px;">
-                    <div class="label">المبلغ الإجمالي</div>
-                    <div class="amount"><span id="payment-total">0</span> ج.م</div>
-                </div>
-            </div>
-            
-            <div class="payment-methods">
-                <div class="payment-method">
-                    <h3><i class="fas fa-mobile-alt"></i> فودافون كاش</h3>
-                    <p>قم بالتحويل إلى الرقم التالي ثم أرسل صورة الإيصال على واتساب:</p>
-                    <div class="payment-details">
-                        <strong>01065403877</strong>
-                    </div>
-                    <button onclick="copyToClipboard('01065403877')" style="margin-top: 15px; padding: 10px 20px; background: #3498db; color: white; border: none; border-radius: 10px; cursor: pointer;">
-                        <i class="fas fa-copy"></i> نسخ الرقم
-                    </button>
-                </div>
-                
-                <div class="payment-method">
-                    <h3><i class="fas fa-university"></i> انستا باي</h3>
-                    <p>قم بالتحويل إلى الرقم التالي ثم أرسل صورة الإيصال على واتساب:</p>
-                    <div class="payment-details">
-                        <strong>01285513617</strong>
-                    </div>
-                    <button onclick="copyToClipboard('01285513617')" style="margin-top: 15px; padding: 10px 20px; background: #3498db; color: white; border: none; border-radius: 10px; cursor: pointer;">
-                        <i class="fas fa-copy"></i> نسخ الرقم
-                    </button>
-                </div>
-                
-                <div class="payment-method">
-                    <h3><i class="fas fa-money-bill-wave"></i> الدفع عند الاستلام</h3>
-                    <p>متاح للطلبات التي تقل قيمتها عن 1000 ج.م</p>
-                    <p style="color: #e74c3c; margin-top: 10px;"><i class="fas fa-exclamation-triangle"></i> ملاحظة: يتم إضافة رسوم شحن إضافية</p>
-                </div>
-            </div>
-            
-            <div class="payment-policy">
-                <h4><i class="fas fa-exclamation-circle"></i> تعليمات مهمة</h4>
-                <p>1. بعد التحويل، يرجى إرسال صورة الإيصال على واتساب: <strong>01281612188</strong></p>
-                <p>2. اذكر رقم طلبك في الرسالة: <strong id="order-number"></strong></p>
-                <p>3. سيتم تأكيد طلبك خلال ساعة عمل من استلام الإيصال</p>
-            </div>
-            
-            <button class="whatsapp-payment" onclick="sendPaymentConfirmation()" style="width: 100%; padding: 20px; font-size: 1.2rem;">
-                <i class="fab fa-whatsapp"></i> إرسال إيصال الدفع على واتساب
-            </button>
-        </div>
-    </div>
 
     <!-- 🏢 Header -->
     <header>
@@ -1503,103 +926,16 @@
         </div>
     </section>
 
-    <!-- 🛒 Cart Section -->
-    <section class="cart-section" id="cart-section">
-        <div class="container">
-            <button class="close-cart" onclick="toggleCart()" style="position: absolute; top: 20px; left: 20px;">
-                <i class="fas fa-times"></i>
-            </button>
-            <h2><i class="fas fa-shopping-cart"></i> سلة التسوق</h2>
-            <div id="cart-items">
-                <!-- Cart items will be added here by JavaScript -->
-            </div>
-            
-            <div class="cart-total">
-                <div class="label">المبلغ الإجمالي</div>
-                <div class="amount"><span id="cart-total">0</span> ج.م</div>
-            </div>
-            
-            <!-- 🏦 Payment Policy for High-Value Orders -->
-            <div class="payment-policy" id="payment-policy" style="display: none;">
-                <h4><i class="fas fa-exclamation-circle"></i> سياسة الدفع للطلبات عالية القيمة</h4>
-                <p>نظرًا لأن طلبك يتجاوز 1000 ج.م، يلزم دفع <strong>50% من إجمالي المبلغ</strong> مقدمًا لتأكيد الطلب، ويتم دفع النسبة المتبقية عند الاستلام.</p>
-                <p id="payment-details" style="margin-top: 10px; font-weight: bold; color: #2ecc71;"></p>
-            </div>
-            
-            <!-- 🛍️ زرين الدفع -->
-            <div class="payment-options">
-                <button class="whatsapp-payment" onclick="checkoutWhatsApp()">
-                    <i class="fab fa-whatsapp"></i> الدفع عبر واتساب
-                </button>
-                <button class="website-payment" onclick="checkoutWebsite()">
-                    <i class="fas fa-globe"></i> الدفع عبر الموقع
-                </button>
-            </div>
-            
-            <div class="cart-actions">
-                <button class="clear-cart" onclick="clearCart()">
-                    <i class="fas fa-trash"></i> إفراغ السلة
-                </button>
-                <button class="continue-shopping" onclick="toggleCart()">
-                    <i class="fas fa-shopping-bag"></i> مواصلة التسوق
-                </button>
-            </div>
-        </div>
-    </section>
-
     <!-- 🤖 Products Section -->
     <section class="products-section" id="products">
         <div class="container">
             <h2 class="section-title">🤖 منتجاتنا المتطورة</h2>
             
-            <!-- 🆕 المنتجات من Google Sheets ستظهر هنا تلقائياً -->
+            <!-- المنتجات من Google Sheets ستظهر هنا -->
             <div class="products-grid" id="dynamic-products">
-                <!-- المنتجات ستحمل تلقائياً من Google Sheets -->
-            </div>
-            
-            <!-- 🏠 المنتجات الافتراضية (تظهر فقط إذا فشل الاتصال) -->
-            <div class="products-grid" id="default-products" style="display: none;">
-                <!-- Product 1 -->
-                <div class="product-card featured">
-                    <div class="product-img-container">
-                        <span class="product-badge">الأكثر مبيعًا</span>
-                        <img src="images/o.jpg" class="product-img" alt="روبوت صناعي" onerror="handleImageError(this, 'product')">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name"><i class="fas fa-industry"></i> روبوت صناعي متقدم</h3>
-                        <p class="product-description">
-                            روبوت صناعي ذو 6 محاور بدقة ±0.02 مم، مثالي لأتمتة خطوط الإنتاج الدقيقة. 
-                            مزود بتقنية الرؤية الحاسوبية ويمكن دمجه مع أنظمة الذكاء الاصطناعي.
-                        </p>
-                        <div class="product-price-container">
-                            <div class="product-price">1,499 ج.م</div>
-                            <div class="product-discount">شامل الضريبة</div>
-                        </div>
-                        <button class="add-to-cart" onclick="addToCart('روبوت صناعي متقدم', 1499)">
-                            <i class="fas fa-cart-plus"></i> أضف إلى السلة
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Product 2 -->
-                <div class="product-card">
-                    <div class="product-img-container">
-                        <img src="images/o1.jpg" class="product-img" alt="روبوت خدمي" onerror="handleImageError(this, 'product')">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name"><i class="fas fa-home"></i> روبوت خدمي منزلي</h3>
-                        <p class="product-description">
-                            مساعد منزلي ذكي متكامل يمكنه التنظيف، الترتيب، التحكم بالأجهزة الذكية، 
-                            وحتى العناية بكبار السن. يتفهم الأوامر الصوتية ويتكيف مع عادات الأسرة.
-                        </p>
-                        <div class="product-price-container">
-                            <div class="product-price">1,299 ج.م</div>
-                            <div class="product-discount">شامل التركيب</div>
-                        </div>
-                        <button class="add-to-cart" onclick="addToCart('روبوت خدمي منزلي', 1299)">
-                            <i class="fas fa-cart-plus"></i> أضف إلى السلة
-                        </button>
-                    </div>
+                <div style="grid-column: 1 / -1; text-align: center; padding: 50px;">
+                    <div class="spinner" style="margin: 0 auto;"></div>
+                    <p style="margin-top: 20px; color: #2ecc71;">جاري تحميل المنتجات من Google Sheets...</p>
                 </div>
             </div>
         </div>
@@ -1651,13 +987,6 @@
             
             <div class="copyright">
                 <p>© 2024 The World of Robotics. جميع الحقوق محفوظة. | للاستفسارات: +20 12 81612188</p>
-                <p style="margin-top: 10px; font-size: 0.9rem;">
-                    <i class="fas fa-globe"></i> 
-                    تابعنا على: 
-                    <a href="https://www.facebook.com/share/1GFgWrsmFV/" target="_blank" style="color: #2ecc71; text-decoration: none; margin: 0 5px;">فيسبوك</a> | 
-                    <a href="https://www.instagram.com/the_worldof_robotics?igsh=MWl1MnJ5eXNhOGFrbg==" target="_blank" style="color: #2ecc71; text-decoration: none; margin: 0 5px;">انستجرام</a> | 
-                    <a href="https://www.tiktok.com/@theworldofrobotics0" target="_blank" style="color: #2ecc71; text-decoration: none; margin: 0 5px;">تيك توك</a>
-                </p>
             </div>
         </div>
     </footer>
@@ -1668,8 +997,6 @@
         // 🛒 نظام سلة التسوق
         // ============================================
         let cart = [];
-        let currentOrderNumber = '';
-        let cartVisible = false;
         
         // 🖼️ معالجة أخطاء الصور
         function handleImageError(imgElement, type) {
@@ -1697,25 +1024,6 @@
                         <i class="fas fa-robot"></i>
                     </div>
                 `;
-            } else if(type === 'product') {
-                imgElement.parentElement.innerHTML = `
-                    <div style="
-                        width: 100%;
-                        height: 250px;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        background: linear-gradient(135deg, ${randomColor}20, #2c3e5020);
-                        color: ${randomColor};
-                        font-weight: bold;
-                        font-size: 1.2rem;
-                        border-radius: 25px 25px 0 0;
-                        border: 2px dashed ${randomColor}40;
-                    ">
-                        <i class="fas fa-robot" style="font-size: 3rem; margin-right: 15px;"></i>
-                        <span>صورة ${imgElement.alt}</span>
-                    </div>
-                `;
             }
         }
         
@@ -1738,17 +1046,11 @@
         // 🛒 عرض/إخفاء سلة التسوق
         function toggleCart() {
             const cartSection = document.getElementById('cart-section');
-            cartVisible = !cartVisible;
+            if (!cartSection) return;
             
-            if (cartVisible) {
-                cartSection.style.display = 'block';
-                document.body.style.overflow = 'hidden';
-            } else {
-                cartSection.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }
-            
-            closePaymentPage();
+            const isVisible = cartSection.style.display === 'block';
+            cartSection.style.display = isVisible ? 'none' : 'block';
+            document.body.style.overflow = isVisible ? 'auto' : 'hidden';
         }
         
         // 🔄 تحديث سلة التسوق
@@ -1756,9 +1058,8 @@
             const cartItems = document.getElementById('cart-items');
             const cartTotal = document.getElementById('cart-total');
             const cartCount = document.getElementById('cart-count');
-            const paymentPolicy = document.getElementById('payment-policy');
-            const paymentDetails = document.getElementById('payment-details');
-            const paymentTotal = document.getElementById('payment-total');
+            
+            if (!cartItems) return;
             
             cartItems.innerHTML = '';
             let total = 0;
@@ -1791,22 +1092,8 @@
                 });
             }
             
-            cartTotal.textContent = total.toLocaleString();
-            paymentTotal.textContent = total.toLocaleString();
-            cartCount.textContent = cart.length;
-            
-            if (total >= 1000) {
-                const firstPayment = total * 0.5;
-                const remainingPayment = total - firstPayment;
-                
-                paymentPolicy.style.display = 'block';
-                paymentDetails.innerHTML = `
-                    <i class="fas fa-money-bill-wave"></i> الدفعة الأولى: ${firstPayment.toLocaleString()} ج.م (50%)<br>
-                    <i class="fas fa-clock"></i> المتبقي عند الاستلام: ${remainingPayment.toLocaleString()} ج.م
-                `;
-            } else {
-                paymentPolicy.style.display = 'none';
-            }
+            if (cartTotal) cartTotal.textContent = total.toLocaleString();
+            if (cartCount) cartCount.textContent = cart.length;
             
             localStorage.setItem('roboticsCart', JSON.stringify(cart));
         }
@@ -1818,15 +1105,11 @@
             showNotification(`✅ تمت إضافة "${name}" إلى السلة`, 'success');
             
             const cartIcon = document.querySelector('.cart-icon');
-            cartIcon.style.transform = 'scale(1.3)';
-            setTimeout(() => {
-                cartIcon.style.transform = 'scale(1)';
-            }, 300);
-            
-            if (window.innerWidth <= 768 && !cartVisible) {
+            if (cartIcon) {
+                cartIcon.style.transform = 'scale(1.3)';
                 setTimeout(() => {
-                    toggleCart();
-                }, 500);
+                    cartIcon.style.transform = 'scale(1)';
+                }, 300);
             }
         }
         
@@ -1838,94 +1121,12 @@
             showNotification(`🗑️ تمت إزالة "${removedItem}" من السلة`, 'error');
         }
         
-        // 🗑️ إفراغ السلة
-        function clearCart() {
-            if (cart.length === 0) {
-                showNotification('⚠️ السلة فارغة بالفعل', 'error');
-                return;
-            }
-            
-            if (confirm('هل أنت متأكد من إفراغ سلة التسوق؟ سيتم حذف جميع المنتجات.')) {
-                cart = [];
-                updateCart();
-                showNotification('✅ تم إفراغ سلة التسوق', 'success');
-                
-                if (cartVisible) {
-                    setTimeout(() => {
-                        toggleCart();
-                    }, 1000);
-                }
-            }
-        }
-        
         // 📱 التواصل مع خدمة العملاء
         function contactCustomerService() {
             const phoneNumber = "+201281612188";
             const message = "مرحبًا، أرغب في الاستفسار عن منتجات الروبوتات...";
             const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
             window.open(whatsappURL, '_blank');
-        }
-        
-        // 🛍️ الدفع عبر واتساب
-        function checkoutWhatsApp() {
-            if (cart.length === 0) {
-                showNotification('⚠️ السلة فارغة. أضف منتجات أولاً', 'error');
-                return;
-            }
-            
-            document.getElementById('loader').classList.add('active');
-            
-            const phoneNumber = "+201281612188";
-            const timestamp = new Date().getTime();
-            const orderId = `ROBOT-${timestamp}`;
-            
-            let message = `🔖 طلب جديد #${orderId}\n`;
-            message += `📅 التاريخ: ${new Date().toLocaleDateString('ar-EG')}\n`;
-            message += `⏰ الوقت: ${new Date().toLocaleTimeString('ar-EG')}\n\n`;
-            message += `🛍️ المنتجات:\n`;
-            
-            cart.forEach((item, index) => {
-                message += `${index + 1}. ${item.name} - ${item.price.toLocaleString()} ج.م\n`;
-            });
-            
-            message += `\n💰 الإجمالي: ${cart.reduce((sum, item) => sum + item.price, 0).toLocaleString()} ج.م\n\n`;
-            message += `📍 ملاحظة: هذا الطلب تم عبر موقع The World of Robotics`;
-            
-            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-            
-            setTimeout(() => {
-                document.getElementById('loader').classList.remove('active');
-                window.open(whatsappURL, '_blank');
-                showNotification(`✅ تم إرسال الطلب #${orderId} على واتساب`, 'success');
-                
-                setTimeout(() => {
-                    cart = [];
-                    updateCart();
-                    if (cartVisible) toggleCart();
-                }, 2000);
-            }, 1500);
-        }
-        
-        // 🏦 الدفع عبر الموقع
-        function checkoutWebsite() {
-            if (cart.length === 0) {
-                showNotification('⚠️ السلة فارغة. أضف منتجات أولاً', 'error');
-                return;
-            }
-            
-            const orderNumber = `ORDER-${new Date().getTime().toString().slice(-6)}`;
-            document.getElementById('order-number').textContent = orderNumber;
-            document.getElementById('payment-page').style.display = 'block';
-            document.body.style.overflow = 'hidden';
-        }
-        
-        // 📋 نسخ النص للحافظة
-        function copyToClipboard(text) {
-            navigator.clipboard.writeText(text).then(() => {
-                showNotification('✅ تم نسخ الرقم: ' + text, 'success');
-            }).catch(err => {
-                showNotification('❌ فشل نسخ الرقم', 'error');
-            });
         }
         
         // 🔔 إظهار الإشعارات
@@ -1940,38 +1141,21 @@
             }, 4000);
         }
         
-        // ❌ إغلاق صفحة الدفع
-        function closePaymentPage() {
-            document.getElementById('payment-page').style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-        
-        // 📨 إرسال تأكيد الدفع
-        function sendPaymentConfirmation() {
-            const orderNum = document.getElementById('order-number').textContent;
-            const phoneNumber = "+201281612188";
-            const message = `📋 تأكيد دفع الطلب #${orderNum}\n\n`;
-            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-            window.open(whatsappURL, '_blank');
-        }
-        
         // ============================================
-        // 🔗 نظام Google Sheets - الإصدار المصحح
+        // 🔗 جلب المنتجات من Google Sheets
         // ============================================
         
-        // 📦 جلب المنتجات من Google Sheets
         async function loadProductsFromGoogleSheets() {
             try {
                 console.log('🔄 جلب البيانات من Google Sheets...');
-                console.log('🔗 الرابط:', GOOGLE_SCRIPT_URL);
                 
                 // عرض مؤشر تحميل
                 const productsGrid = document.getElementById('dynamic-products');
                 if (productsGrid) {
                     productsGrid.innerHTML = `
                         <div style="grid-column: 1 / -1; text-align: center; padding: 50px;">
-                            <div class="spinner" style="margin: 0 auto; width: 60px; height: 60px; border: 5px solid rgba(46, 204, 113, 0.3); border-top: 5px solid #2ecc71; border-radius: 50%; animation: spin 1s linear infinite;"></div>
-                            <p style="margin-top: 20px; color: #2ecc71; font-size: 1.2rem;">جاري تحميل المنتجات...</p>
+                            <div class="spinner" style="margin: 0 auto;"></div>
+                            <p style="margin-top: 20px; color: #2ecc71;">جاري تحميل المنتجات...</p>
                         </div>
                     `;
                 }
@@ -1985,64 +1169,29 @@
                 }
                 
                 const data = await response.json();
-                console.log('📊 البيانات الكاملة:', data);
+                console.log('📊 البيانات المستلمة:', data);
                 
-                // ⚠️ الإصلاح: البيانات تأتي في data.products وليس data مباشرة
+                // التحقق من البيانات وعرضها
                 if (data.success && data.products && data.products.length > 0) {
-                    console.log(`✅ تم جلب ${data.products.length} منتج بنجاح`);
-                    displayProductsFromSheets(data.products);
+                    console.log(`✅ تم جلب ${data.products.length} منتج`);
+                    displayProducts(data.products);
                 } else {
-                    console.warn('⚠️ لا توجد منتجات في الجدول');
-                    showDefaultProducts();
+                    console.warn('⚠️ لا توجد منتجات في البيانات');
+                    showNoProductsMessage();
                 }
                 
             } catch (error) {
                 console.error('❌ خطأ في الاتصال:', error);
-                console.error('تفاصيل الخطأ:', error.message);
-                
-                // عرض رسالة خطأ
-                const productsGrid = document.getElementById('dynamic-products');
-                if (productsGrid) {
-                    productsGrid.innerHTML = `
-                        <div style="grid-column: 1 / -1; text-align: center; padding: 50px;">
-                            <i class="fas fa-exclamation-triangle" style="font-size: 3rem; color: #e74c3c; margin-bottom: 20px;"></i>
-                            <h3 style="color: #e74c3c;">خطأ في الاتصال</h3>
-                            <p>${error.message}</p>
-                            <button onclick="forceRefreshProducts()" 
-                                    style="margin-top: 20px; padding: 10px 20px; background: #3498db; color: white; border: none; border-radius: 10px; cursor: pointer;">
-                                <i class="fas fa-redo"></i> إعادة المحاولة
-                            </button>
-                        </div>
-                    `;
-                }
-                
-                // إظهار المنتجات الافتراضية بعد 2 ثانية
-                setTimeout(showDefaultProducts, 2000);
+                showNoProductsMessage();
             }
         }
         
-        // 🎯 عرض المنتجات من Google Sheets
-        function displayProductsFromSheets(products) {
+        // 🎯 عرض المنتجات
+        function displayProducts(products) {
             const productsGrid = document.getElementById('dynamic-products');
-            if (!productsGrid) {
-                console.error('❌ لم يتم العثور على #dynamic-products');
-                return;
-            }
-            
-            console.log('🎨 عرض المنتجات:', products);
+            if (!productsGrid) return;
             
             productsGrid.innerHTML = '';
-            
-            if (!products || products.length === 0) {
-                productsGrid.innerHTML = `
-                    <div style="grid-column: 1 / -1; text-align: center; padding: 50px;">
-                        <i class="fas fa-robot" style="font-size: 4rem; color: #95a5a6; margin-bottom: 20px;"></i>
-                        <h3 style="color: #95a5a6;">لا توجد منتجات حالياً</h3>
-                        <p>سيتم إضافة المنتجات قريباً</p>
-                    </div>
-                `;
-                return;
-            }
             
             products.forEach((product, index) => {
                 const productCard = document.createElement('div');
@@ -2076,33 +1225,25 @@
                 productsGrid.appendChild(productCard);
             });
             
-            // إخفاء المنتجات الافتراضية
-            document.getElementById('default-products').style.display = 'none';
-            console.log(`✅ تم عرض ${products.length} منتج من Google Sheets`);
-            
-            // إظهار إشعار النجاح
-            showNotification(`✅ تم تحميل ${products.length} منتج من Google Sheets`, 'success');
+            showNotification(`✅ تم تحميل ${products.length} منتج`, 'success');
         }
         
-        // 🏠 عرض المنتجات الافتراضية
-        function showDefaultProducts() {
-            const defaultProducts = document.getElementById('default-products');
-            const dynamicProducts = document.getElementById('dynamic-products');
-            
-            if (defaultProducts) {
-                defaultProducts.style.display = 'grid';
+        // 📭 عرض رسالة لا توجد منتجات
+        function showNoProductsMessage() {
+            const productsGrid = document.getElementById('dynamic-products');
+            if (productsGrid) {
+                productsGrid.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 50px;">
+                        <i class="fas fa-robot" style="font-size: 4rem; color: #95a5a6; margin-bottom: 20px;"></i>
+                        <h3 style="color: #95a5a6;">جاري تحديث المخزون</h3>
+                        <p>سيتم إضافة المنتجات قريباً</p>
+                        <button onclick="loadProductsFromGoogleSheets()" 
+                                style="margin-top: 20px; padding: 10px 20px; background: #3498db; color: white; border: none; border-radius: 10px; cursor: pointer;">
+                            <i class="fas fa-redo"></i> تحديث
+                        </button>
+                    </div>
+                `;
             }
-            if (dynamicProducts) {
-                dynamicProducts.style.display = 'none';
-            }
-            console.log('🏠 عرض المنتجات الافتراضية');
-        }
-        
-        // 🔄 تحديث قسري للمنتجات
-        function forceRefreshProducts() {
-            console.log('🔄 تحديث قسري للمنتجات...');
-            showNotification('🔄 جاري تحديث المنتجات من Google Sheets...', 'info');
-            loadProductsFromGoogleSheets();
         }
         
         // ============================================
@@ -2110,7 +1251,6 @@
         // ============================================
         document.addEventListener('DOMContentLoaded', function() {
             console.log('🚀 موقع The World of Robotics جاهز!');
-            console.log('🔗 رابط Google Sheets:', GOOGLE_SCRIPT_URL);
             
             // 1. تحميل المنتجات من Google Sheets
             loadProductsFromGoogleSheets();
@@ -2130,93 +1270,37 @@
             const savedTheme = localStorage.getItem('theme');
             if (savedTheme === 'light') {
                 document.body.classList.add('light-mode');
-                document.getElementById('theme-icon').className = 'fas fa-sun';
+                const themeIcon = document.getElementById('theme-icon');
+                if (themeIcon) themeIcon.className = 'fas fa-sun';
             }
-            
-            // 4. اختبار الاتصال بـ Google Sheets كل 5 دقائق
-            setInterval(() => {
-                console.log('⏰ تحديث البيانات تلقائياً...');
-                loadProductsFromGoogleSheets();
-            }, 5 * 60 * 1000); // 5 دقائق
-            
-            // 5. إضافة تأثيرات عند التمرير
-            window.addEventListener('scroll', function() {
-                const header = document.querySelector('header');
-                if (window.scrollY > 100) {
-                    header.style.boxShadow = '0 10px 40px rgba(46, 204, 113, 0.4)';
-                } else {
-                    header.style.boxShadow = '0 5px 30px rgba(46, 204, 113, 0.3)';
-                }
-            });
-            
-            // 6. التحقق من حالة الاتصال
-            window.addEventListener('online', function() {
-                console.log('🌐 اتصال بالإنترنت متاح، تحديث البيانات...');
-                loadProductsFromGoogleSheets();
-            });
-            
-            window.addEventListener('offline', function() {
-                console.warn('❌ فقدان الاتصال بالإنترنت');
-                showNotification('⚠️ فقدان الاتصال بالإنترنت، جاري استخدام البيانات المخزنة', 'error');
-            });
-            
-            console.log('✅ تم تحميل الموقع بنجاح!');
-            
-            // 7. اختبار الاتصال عند التحميل
-            setTimeout(() => {
-                console.log('🧪 اختبار الاتصال بـ Google Sheets...');
-                fetch(GOOGLE_SCRIPT_URL)
-                    .then(response => response.json())
-                    .then(data => {
-                        console.log('🎯 اختبار ناجح! البيانات:', data);
-                        if (data.success && data.products) {
-                            console.log(`📦 عدد المنتجات: ${data.products.length}`);
-                        }
-                    })
-                    .catch(error => {
-                        console.error('❌ اختبار الاتصال فاشل:', error);
-                    });
-            }, 3000);
         });
-        
-        // ============================================
-        // 📊 أدوات التطوير
-        // ============================================
-        function debugCart() {
-            console.log('🛒 محتويات السلة:', cart);
-            console.log('📊 الإجمالي:', cart.reduce((sum, item) => sum + item.price, 0));
-        }
-        
-        function clearLocalStorage() {
-            if (confirm('هل تريد مسح جميع البيانات المحفوظة؟')) {
-                localStorage.clear();
-                location.reload();
-            }
-        }
-        
-        function testGoogleSheetsConnection() {
-            console.log('🔗 اختبار الاتصال بـ Google Sheets...');
-            fetch(GOOGLE_SCRIPT_URL)
-                .then(response => response.json())
-                .then(data => {
-                    console.log('✅ الاتصال ناجح:', data);
-                    showNotification('✅ الاتصال بـ Google Sheets ناجح', 'success');
-                })
-                .catch(error => {
-                    console.error('❌ فشل الاتصال:', error);
-                    showNotification('❌ فشل الاتصال بـ Google Sheets', 'error');
-                });
-        }
-        
-        // 🔧 دالة لمعرفة حالة النظام
-        function systemStatus() {
-            return {
-                cartItems: cart.length,
-                theme: localStorage.getItem('theme') || 'dark',
-                googleScriptUrl: GOOGLE_SCRIPT_URL,
-                lastUpdate: new Date().toLocaleString()
-            };
-        }
     </script>
+
+    <!-- 🛒 Cart Section (مخفي افتراضياً) -->
+    <section class="cart-section" id="cart-section" style="display: none;">
+        <div class="container">
+            <button class="close-cart" onclick="toggleCart()" style="position: absolute; top: 20px; left: 20px; background: var(--danger-color); color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2><i class="fas fa-shopping-cart"></i> سلة التسوق</h2>
+            <div id="cart-items">
+                <!-- Cart items will be added here by JavaScript -->
+            </div>
+            
+            <div class="cart-total">
+                <div class="label">المبلغ الإجمالي</div>
+                <div class="amount"><span id="cart-total">0</span> ج.م</div>
+            </div>
+            
+            <div style="display: flex; gap: 15px; justify-content: center; margin-top: 20px;">
+                <button onclick="clearCart()" style="padding: 12px 25px; background: var(--danger-color); color: white; border: none; border-radius: 10px; cursor: pointer;">
+                    <i class="fas fa-trash"></i> إفراغ السلة
+                </button>
+                <button onclick="toggleCart()" style="padding: 12px 25px; background: #95a5a6; color: white; border: none; border-radius: 10px; cursor: pointer;">
+                    <i class="fas fa-shopping-bag"></i> مواصلة التسوق
+                </button>
+            </div>
+        </div>
+    </section>
 </body>
 </html>
