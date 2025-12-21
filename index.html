@@ -265,6 +265,8 @@
             display: none;
             animation: slideIn 0.5s ease;
             border: 2px solid var(--primary-color);
+            position: relative;
+            z-index: 1003;
         }
         
         body.light-mode .cart-section {
@@ -843,6 +845,261 @@
             from { opacity: 0; }
             to { opacity: 1; }
         }
+        
+        /* 🎯 إضافة أنماط جديدة للدفع */
+        .payment-options {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            border: 2px solid rgba(46, 204, 113, 0.3);
+        }
+        
+        body.light-mode .payment-options {
+            background: rgba(0, 0, 0, 0.03);
+            border: 2px solid rgba(46, 204, 113, 0.2);
+        }
+        
+        .payment-option {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .payment-option:hover {
+            background: rgba(46, 204, 113, 0.1);
+            border-color: var(--primary-color);
+            transform: translateX(-5px);
+        }
+        
+        body.light-mode .payment-option:hover {
+            background: rgba(46, 204, 113, 0.15);
+        }
+        
+        .payment-option.selected {
+            background: rgba(46, 204, 113, 0.2);
+            border-color: var(--primary-color);
+        }
+        
+        .payment-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: white;
+        }
+        
+        .payment-details {
+            flex: 1;
+        }
+        
+        .payment-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: white;
+            margin-bottom: 5px;
+        }
+        
+        body.light-mode .payment-title {
+            color: #333;
+        }
+        
+        .payment-description {
+            font-size: 0.9rem;
+            color: #bdc3c7;
+        }
+        
+        body.light-mode .payment-description {
+            color: #666;
+        }
+        
+        .payment-amount {
+            font-weight: 700;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+        
+        /* 🚀 زر متابعة الدفع */
+        .proceed-payment {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+        
+        .proceed-payment:hover {
+            background: linear-gradient(135deg, #8e44ad, #732d91);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(155, 89, 182, 0.4);
+        }
+        
+        .proceed-payment.whatsapp {
+            background: linear-gradient(135deg, #25d366, #128c7e);
+        }
+        
+        .proceed-payment.whatsapp:hover {
+            background: linear-gradient(135deg, #128c7e, #0d6e5e);
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+        }
+        
+        /* 📱 صفحة الدفع Instapay */
+        .payment-page {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 1004;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .payment-page.active {
+            display: flex;
+        }
+        
+        .payment-container {
+            background: rgba(0, 0, 0, 0.95);
+            border-radius: 25px;
+            padding: 40px;
+            max-width: 500px;
+            width: 90%;
+            border: 3px solid var(--primary-color);
+            box-shadow: 0 20px 50px rgba(46, 204, 113, 0.3);
+            position: relative;
+        }
+        
+        body.light-mode .payment-container {
+            background: rgba(255, 255, 255, 0.98);
+        }
+        
+        .payment-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .payment-header h2 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        .payment-amount-display {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 20px 0;
+            border: 2px solid var(--primary-color);
+        }
+        
+        .payment-amount-display .label {
+            font-size: 1.1rem;
+            color: #bdc3c7;
+            margin-bottom: 10px;
+        }
+        
+        .payment-amount-display .amount {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--primary-color);
+        }
+        
+        .instapay-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .instapay-method {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .instapay-method:hover {
+            background: rgba(46, 204, 113, 0.1);
+            border-color: var(--primary-color);
+        }
+        
+        .instapay-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary-color);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+        }
+        
+        .instapay-details h4 {
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+        
+        .instapay-details p {
+            font-size: 0.9rem;
+            color: #bdc3c7;
+        }
+        
+        .close-payment {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: var(--danger-color);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .close-payment:hover {
+            background: #c0392b;
+            transform: rotate(90deg);
+        }
     </style>
     
     <!-- الروابط الخارجية -->
@@ -888,7 +1145,7 @@
                     <ul>
                         <li><a href="#home"><i class="fas fa-home"></i> الرئيسية</a></li>
                         <li><a href="#products"><i class="fas fa-robot"></i> المنتجات</a></li>
-                        <li><a href="#cart" onclick="toggleCart()"><i class="fas fa-shopping-cart"></i> سلة التسوق</a></li>
+                        <li><a href="javascript:void(0)" onclick="toggleCart()"><i class="fas fa-shopping-cart"></i> سلة التسوق</a></li>
                         <li><a href="#contact"><i class="fas fa-phone"></i> اتصل بنا</a></li>
                     </ul>
                 </nav>
@@ -994,9 +1251,10 @@
     <!-- 📜 JavaScript -->
     <script>
         // ============================================
-        // 🛒 نظام سلة التسوق
+        // 🛒 نظام سلة التسوق والدفع المتكامل
         // ============================================
         let cart = [];
+        let selectedPaymentMethod = null;
         
         // 🖼️ معالجة أخطاء الصور
         function handleImageError(imgElement, type) {
@@ -1043,14 +1301,27 @@
             }
         }
         
-        // 🛒 عرض/إخفاء سلة التسوق
+        // 🛒 عرض/إخفاء سلة التسوق (النسخة المصححة)
         function toggleCart() {
             const cartSection = document.getElementById('cart-section');
             if (!cartSection) return;
             
-            const isVisible = cartSection.style.display === 'block';
-            cartSection.style.display = isVisible ? 'none' : 'block';
-            document.body.style.overflow = isVisible ? 'auto' : 'hidden';
+            // تبديل الحالة
+            if (cartSection.style.display === 'block') {
+                cartSection.style.display = 'none';
+            } else {
+                cartSection.style.display = 'block';
+                
+                // تحديث محتوى السلة أولاً
+                updateCart();
+                
+                // ثم عرض خيارات الدفع إذا كانت السلة غير فارغة
+                if (cart.length > 0) {
+                    setTimeout(() => {
+                        showPaymentOptions();
+                    }, 100);
+                }
+            }
         }
         
         // 🔄 تحديث سلة التسوق
@@ -1072,6 +1343,13 @@
                         <p style="margin-top: 10px;">لم تقم بإضافة أي منتجات بعد</p>
                     </div>
                 `;
+                
+                // إخفاء خيارات الدفع إذا كانت السلة فارغة
+                const paymentOptions = document.getElementById('payment-options');
+                const proceedPayment = document.getElementById('proceed-payment');
+                if (paymentOptions) paymentOptions.style.display = 'none';
+                if (proceedPayment) proceedPayment.style.display = 'none';
+                
             } else {
                 cart.forEach((item, index) => {
                     total += item.price;
@@ -1121,7 +1399,19 @@
             showNotification(`🗑️ تمت إزالة "${removedItem}" من السلة`, 'error');
         }
         
-        // 📱 التواصل مع خدمة العملاء
+        // 🗑️ إفراغ السلة
+        function clearCart() {
+            if (cart.length === 0) {
+                showNotification('السلة فارغة بالفعل', 'info');
+                return;
+            }
+            
+            cart = [];
+            updateCart();
+            showNotification('🗑️ تم إفراغ السلة بالكامل', 'error');
+        }
+        
+        // 📱 التواصل مع خدمة العملاء عبر واتساب
         function contactCustomerService() {
             const phoneNumber = "+201281612188";
             const message = "مرحبًا، أرغب في الاستفسار عن منتجات الروبوتات...";
@@ -1139,6 +1429,322 @@
             setTimeout(() => {
                 notification.remove();
             }, 4000);
+        }
+        
+        // ============================================
+        // 💳 نظام الدفع الذكي
+        // ============================================
+        
+        // 💰 حساب المبلغ الإجمالي
+        function getCartTotal() {
+            return cart.reduce((total, item) => total + item.price, 0);
+        }
+        
+        // 📋 عرض خيارات الدفع
+        function showPaymentOptions() {
+            const total = getCartTotal();
+            const cartSection = document.querySelector('.cart-section .container');
+            
+            if (!cartSection) return;
+            
+            // إزالة خيارات الدفع القديمة إذا وجدت
+            const oldPaymentOptions = document.getElementById('payment-options');
+            const oldProceedPayment = document.getElementById('proceed-payment');
+            
+            if (oldPaymentOptions) oldPaymentOptions.remove();
+            if (oldProceedPayment) oldProceedPayment.remove();
+            
+            // إنشاء قسم خيارات الدفع
+            const paymentOptions = document.createElement('div');
+            paymentOptions.id = 'payment-options';
+            paymentOptions.className = 'payment-options';
+            
+            const proceedPayment = document.createElement('button');
+            proceedPayment.id = 'proceed-payment';
+            proceedPayment.className = 'proceed-payment';
+            proceedPayment.innerHTML = '<i class="fas fa-lock"></i> متابعة الدفع';
+            proceedPayment.onclick = proceedToPayment;
+            proceedPayment.style.display = 'none';
+            
+            // تحديث خيارات الدفع بناءً على المبلغ
+            updatePaymentMethods(total, paymentOptions);
+            
+            // إضافة إلى قسم السلة
+            cartSection.appendChild(paymentOptions);
+            cartSection.appendChild(proceedPayment);
+        }
+        
+        // 🔄 تحديث طرق الدفع بناءً على المبلغ
+        function updatePaymentMethods(total, paymentOptions) {
+            if (!paymentOptions) return;
+            
+            selectedPaymentMethod = null;
+            
+            // إذا كان المبلغ أقل من 1000 جنيه
+            if (total < 1000) {
+                paymentOptions.innerHTML = `
+                    <div class="payment-option" onclick="selectPaymentMethod('whatsapp')">
+                        <div class="payment-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div class="payment-details">
+                            <div class="payment-title">الدفع عن طريق الواتساب</div>
+                            <div class="payment-description">تكلم مع خدمة العملاء لإتمام الطلب والدفع عند الاستلام</div>
+                        </div>
+                        <div class="payment-amount">${total.toLocaleString()} ج.م</div>
+                    </div>
+                    
+                    <div class="payment-option" onclick="selectPaymentMethod('instapay')">
+                        <div class="payment-icon">
+                            <i class="fas fa-credit-card"></i>
+                        </div>
+                        <div class="payment-details">
+                            <div class="payment-title">الدفع عبر Instapay</div>
+                            <div class="payment-description">دفع آمن عبر بطاقات الائتمان أو المحافظ الإلكترونية</div>
+                        </div>
+                        <div class="payment-amount">${total.toLocaleString()} ج.م</div>
+                    </div>
+                `;
+            } 
+            // إذا كان المبلغ أكبر من أو يساوي 1000 جنيه
+            else {
+                const depositAmount = Math.ceil(total / 2); // 50% مقدم
+                const remainingAmount = total - depositAmount;
+                
+                paymentOptions.innerHTML = `
+                    <div class="payment-option" onclick="selectPaymentMethod('instapay_deposit')">
+                        <div class="payment-icon">
+                            <i class="fas fa-money-check-alt"></i>
+                        </div>
+                        <div class="payment-details">
+                            <div class="payment-title">دفع 50% مقدم عبر Instapay</div>
+                            <div class="payment-description">ادفع ${depositAmount.toLocaleString()} ج.م مقدم والباقي عند الاستلام</div>
+                        </div>
+                        <div class="payment-amount">${depositAmount.toLocaleString()} ج.م</div>
+                    </div>
+                    
+                    <div class="payment-option" onclick="selectPaymentMethod('whatsapp_deposit')">
+                        <div class="payment-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div class="payment-details">
+                            <div class="payment-title">تكلم مع خدمة العملاء</div>
+                            <div class="payment-description">اتصل بنا للترتيب للدفع المقدم والاستلام</div>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+        
+        // 🎯 اختيار طريقة الدفع
+        function selectPaymentMethod(method) {
+            selectedPaymentMethod = method;
+            
+            // إزالة التحديد من جميع الخيارات
+            const allOptions = document.querySelectorAll('.payment-option');
+            allOptions.forEach(option => option.classList.remove('selected'));
+            
+            // إضافة التحديد للخيار المختار
+            event.currentTarget.classList.add('selected');
+            
+            // إظهار زر متابعة الدفع
+            const proceedPayment = document.getElementById('proceed-payment');
+            if (proceedPayment) {
+                proceedPayment.style.display = 'flex';
+                
+                // تغيير نص الزر حسب الطريقة المختارة
+                if (method.includes('whatsapp')) {
+                    proceedPayment.className = 'proceed-payment whatsapp';
+                    proceedPayment.innerHTML = '<i class="fab fa-whatsapp"></i> التحدث مع خدمة العملاء';
+                } else {
+                    proceedPayment.className = 'proceed-payment';
+                    proceedPayment.innerHTML = '<i class="fas fa-credit-card"></i> متابعة الدفع';
+                }
+            }
+        }
+        
+        // 🚀 متابعة الدفع
+        function proceedToPayment() {
+            if (!selectedPaymentMethod) {
+                showNotification('⚠️ يرجى اختيار طريقة الدفع أولاً', 'error');
+                return;
+            }
+            
+            const total = getCartTotal();
+            
+            // إذا كانت الطريقة تحتوي على واتساب
+            if (selectedPaymentMethod.includes('whatsapp')) {
+                proceedWithWhatsApp(total);
+            } 
+            // إذا كانت الطريقة تحتوي على instapay
+            else if (selectedPaymentMethod.includes('instapay')) {
+                showInstapayPage(total);
+            }
+        }
+        
+        // 💬 إتمام الطلب عبر واتساب
+        function proceedWithWhatsApp(total) {
+            const phoneNumber = "+201281612188";
+            
+            // بناء رسالة الطلب
+            let orderMessage = `🔔 طلب جديد من موقع The World of Robotics\n\n`;
+            orderMessage += `📋 تفاصيل الطلب:\n`;
+            
+            cart.forEach((item, index) => {
+                orderMessage += `${index + 1}. ${item.name} - ${item.price.toLocaleString()} ج.م\n`;
+            });
+            
+            orderMessage += `\n💰 الإجمالي: ${total.toLocaleString()} ج.م\n\n`;
+            
+            // إضافة تفاصيل الدفع حسب المبلغ
+            if (total < 1000) {
+                orderMessage += `💳 طريقة الدفع: الدفع عند الاستلام\n`;
+            } else {
+                const depositAmount = Math.ceil(total / 2);
+                orderMessage += `💳 طريقة الدفع: ${depositAmount.toLocaleString()} ج.م مقدم عبر Instapay والباقي عند الاستلام\n`;
+            }
+            
+            orderMessage += `\n📞 الرجاء التواصل مع العميل لإتمام الطلب`;
+            
+            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(orderMessage)}`;
+            window.open(whatsappURL, '_blank');
+            
+            // إظهار رسالة تأكيد
+            showNotification('✅ تم فتح واتساب لإرسال تفاصيل الطلب', 'success');
+        }
+        
+        // 💳 عرض صفحة Instapay
+        function showInstapayPage(total) {
+            const paymentPage = document.getElementById('payment-page');
+            if (!paymentPage) {
+                createInstapayPage();
+            }
+            
+            // حساب المبلغ حسب نوع الدفع
+            let paymentAmount = total;
+            let paymentDescription = 'الدفع الكامل';
+            
+            if (selectedPaymentMethod === 'instapay_deposit') {
+                paymentAmount = Math.ceil(total / 2);
+                paymentDescription = '50% مقدم';
+            }
+            
+            // تحديث بيانات الصفحة
+            document.getElementById('payment-total').textContent = total.toLocaleString();
+            document.getElementById('payment-amount').textContent = paymentAmount.toLocaleString();
+            document.getElementById('payment-description').textContent = paymentDescription;
+            
+            // إظهار الصفحة
+            paymentPage.classList.add('active');
+        }
+        
+        // 🏦 إنشاء صفحة Instapay
+        function createInstapayPage() {
+            const paymentPage = document.createElement('div');
+            paymentPage.id = 'payment-page';
+            paymentPage.className = 'payment-page';
+            
+            paymentPage.innerHTML = `
+                <div class="payment-container">
+                    <button class="close-payment" onclick="closeInstapayPage()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    
+                    <div class="payment-header">
+                        <h2><i class="fas fa-credit-card"></i> الدفع عبر Instapay</h2>
+                        <p>اختر طريقة الدفع المناسبة لك</p>
+                    </div>
+                    
+                    <div class="payment-amount-display">
+                        <div class="label">المبلغ الإجمالي للطلب</div>
+                        <div class="amount"><span id="payment-total">0</span> ج.م</div>
+                    </div>
+                    
+                    <div class="payment-amount-display" style="background: linear-gradient(135deg, #9b59b6, #8e44ad);">
+                        <div class="label" id="payment-description">المبلغ المطلوب دفعه</div>
+                        <div class="amount"><span id="payment-amount">0</span> ج.م</div>
+                    </div>
+                    
+                    <div class="instapay-methods">
+                        <div class="instapay-method" onclick="payWithVodafoneCash()">
+                            <div class="instapay-icon" style="background: #e60000;">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <div class="instapay-details">
+                                <h4>Vodafone Cash</h4>
+                                <p>الدفع عبر فودافون كاش - رقم المحفظة: 0100 000 0000</p>
+                            </div>
+                        </div>
+                        
+                        <div class="instapay-method" onclick="payWithInstapay()">
+                            <div class="instapay-icon" style="background: #0070ba;">
+                                <i class="fas fa-university"></i>
+                            </div>
+                            <div class="instapay-details">
+                                <h4>التحويل البنكي عبر Instapay</h4>
+                                <p>التحويل المباشر عبر تطبيق البنك - الرمز: 123456789</p>
+                            </div>
+                        </div>
+                        
+                        <div class="instapay-method" onclick="payWithCreditCard()">
+                            <div class="instapay-icon" style="background: #ff6b00;">
+                                <i class="fas fa-credit-card"></i>
+                            </div>
+                            <div class="instapay-details">
+                                <h4>بطاقة ائتمان/مدين</h4>
+                                <p>الدفع الآمن عبر البطاقات البنكية</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 30px; color: #bdc3c7; font-size: 0.9rem;">
+                        <p><i class="fas fa-shield-alt"></i> جميع عمليات الدفع مؤمنة ومشفرة</p>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(paymentPage);
+        }
+        
+        // ❌ إغلاق صفحة Instapay
+        function closeInstapayPage() {
+            const paymentPage = document.getElementById('payment-page');
+            if (paymentPage) {
+                paymentPage.classList.remove('active');
+            }
+        }
+        
+        // 📱 الدفع عبر فودافون كاش
+        function payWithVodafoneCash() {
+            const amount = document.getElementById('payment-amount').textContent;
+            const vodaNumber = "01000000000";
+            const message = `لدفع مبلغ ${amount} ج.م عبر فودافون كاش:\n\n1. افتح تطبيق فودافون كاش\n2. اختر 'إرسال أموال'\n3. أدخل الرقم: ${vodaNumber}\n4. أدخل المبلغ: ${amount}\n5. أرسل إشعار الدفع عبر واتساب`;
+            
+            const whatsappURL = `https://wa.me/+201281612188?text=${encodeURIComponent(message)}`;
+            window.open(whatsappURL, '_blank');
+            closeInstapayPage();
+            showNotification('✅ تم فتح واتساب لإرسال إشعار الدفع', 'success');
+        }
+        
+        // 🏦 الدفع عبر Instapay
+        function payWithInstapay() {
+            const amount = document.getElementById('payment-amount').textContent;
+            const instapayCode = "123456789";
+            const message = `لدفع مبلغ ${amount} ج.م عبر Instapay:\n\n1. افتح تطبيق البنك\n2. اختر 'Instapay'\n3. أدخل الرمز: ${instapayCode}\n4. أدخل المبلغ: ${amount}\n5. أرسل إشعار التحويل عبر واتساب`;
+            
+            const whatsappURL = `https://wa.me/+201281612188?text=${encodeURIComponent(message)}`;
+            window.open(whatsappURL, '_blank');
+            closeInstapayPage();
+            showNotification('✅ تم فتح واتساب لإرسال إشعار التحويل', 'success');
+        }
+        
+        // 💳 الدفع عبر بطاقة ائتمان
+        function payWithCreditCard() {
+            const amount = document.getElementById('payment-amount').textContent;
+            const paymentLink = "https://pay.example.com/robotics"; // رابط الدفع الفعلي
+            window.open(paymentLink, '_blank');
+            closeInstapayPage();
+            showNotification('✅ تم فتح صفحة الدفع الآمن', 'success');
         }
         
         // ============================================
@@ -1291,6 +1897,8 @@
                 <div class="label">المبلغ الإجمالي</div>
                 <div class="amount"><span id="cart-total">0</span> ج.م</div>
             </div>
+            
+            <!-- خيارات الدفع ستظهر هنا تلقائياً -->
             
             <div style="display: flex; gap: 15px; justify-content: center; margin-top: 20px;">
                 <button onclick="clearCart()" style="padding: 12px 25px; background: var(--danger-color); color: white; border: none; border-radius: 10px; cursor: pointer;">
